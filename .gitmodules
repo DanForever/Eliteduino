@@ -1,0 +1,3 @@
+[submodule "EDMC/Submodules/PyHid"]
+	path = EDMC/Submodules/PyHid
+	url = https://github.com/DanForever/PyHid.git
