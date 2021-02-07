@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Arduino">
+      <UniqueIdentifier>{6a7912a4-64fc-4880-af3a-2cb9bf3dff72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets">
+      <UniqueIdentifier>{d9a05b3f-84c5-451a-b6af-d058f1f2050d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ControlPanel.ino" />
+    <None Include="src\arduino folders read me.txt">
+      <Filter>Arduino</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="__vm\.ControlPanel.vsarduino.h">
+      <Filter>Arduino</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Eliteduino.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Eliteduino.cpp" />
+    <ClCompile Include="src\assets\coriolis.c">
+      <Filter>Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="src\assets\asteroidstation.c">
+      <Filter>Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="src\assets\commander.c">
+      <Filter>Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="src\assets\megaship.c">
+      <Filter>Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="src\assets\ocellus.c">
+      <Filter>Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="src\assets\orbis.c">
+      <Filter>Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="src\assets\outpost.c">
+      <Filter>Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="src\assets\system.c">
+      <Filter>Assets</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

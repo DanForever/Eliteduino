@@ -1,2 +1,7 @@
 
 Utility/downloads
+ControlPanel/.vs
+ControlPanel/Debug
+ControlPanel/Release
+ControlPanel/__vm
+*.user
