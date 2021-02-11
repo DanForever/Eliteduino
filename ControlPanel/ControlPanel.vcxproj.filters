@@ -4,7 +4,10 @@
     <Filter Include="Arduino">
       <UniqueIdentifier>{6a7912a4-64fc-4880-af3a-2cb9bf3dff72}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Assets">
+    <Filter Include="Display">
+      <UniqueIdentifier>{c21316dc-7f43-429b-8b08-5fd7e263b133}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Display\Assets">
       <UniqueIdentifier>{d9a05b3f-84c5-451a-b6af-d058f1f2050d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -19,32 +22,67 @@
       <Filter>Arduino</Filter>
     </ClInclude>
     <ClInclude Include="src\Eliteduino.h" />
+    <ClInclude Include="src\Architecture.h" />
+    <ClInclude Include="src\Devices.h" />
+    <ClInclude Include="src\Event.h" />
+    <ClInclude Include="src\Property.h" />
+    <ClInclude Include="src\display\Assets.h">
+      <Filter>Display</Filter>
+    </ClInclude>
+    <ClInclude Include="src\display\Database.h">
+      <Filter>Display</Filter>
+    </ClInclude>
+    <ClInclude Include="src\display\ScreenGeneral.h">
+      <Filter>Display</Filter>
+    </ClInclude>
+    <ClInclude Include="src\display\Screen.h">
+      <Filter>Display</Filter>
+    </ClInclude>
+    <ClInclude Include="src\display\Display.h">
+      <Filter>Display</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Eliteduino.cpp" />
-    <ClCompile Include="src\assets\coriolis.c">
-      <Filter>Assets</Filter>
+    <ClCompile Include="data\screen\commander.c">
+      <Filter>Display\Assets</Filter>
     </ClCompile>
-    <ClCompile Include="src\assets\asteroidstation.c">
-      <Filter>Assets</Filter>
+    <ClCompile Include="data\screen\coriolis.c">
+      <Filter>Display\Assets</Filter>
     </ClCompile>
-    <ClCompile Include="src\assets\commander.c">
-      <Filter>Assets</Filter>
+    <ClCompile Include="data\screen\megaship.c">
+      <Filter>Display\Assets</Filter>
     </ClCompile>
-    <ClCompile Include="src\assets\megaship.c">
-      <Filter>Assets</Filter>
+    <ClCompile Include="data\screen\ocellus.c">
+      <Filter>Display\Assets</Filter>
     </ClCompile>
-    <ClCompile Include="src\assets\ocellus.c">
-      <Filter>Assets</Filter>
+    <ClCompile Include="data\screen\orbis.c">
+      <Filter>Display\Assets</Filter>
     </ClCompile>
-    <ClCompile Include="src\assets\orbis.c">
-      <Filter>Assets</Filter>
+    <ClCompile Include="data\screen\outpost.c">
+      <Filter>Display\Assets</Filter>
     </ClCompile>
-    <ClCompile Include="src\assets\outpost.c">
-      <Filter>Assets</Filter>
+    <ClCompile Include="data\screen\surfaceport.c">
+      <Filter>Display\Assets</Filter>
     </ClCompile>
-    <ClCompile Include="src\assets\system.c">
-      <Filter>Assets</Filter>
+    <ClCompile Include="data\screen\surfaceport2.c">
+      <Filter>Display\Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="data\screen\system.c">
+      <Filter>Display\Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="data\screen\asteroidstation.c">
+      <Filter>Display\Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="src\display\ScreenGeneral.cpp">
+      <Filter>Display</Filter>
+    </ClCompile>
+    <ClCompile Include="src\display\Screen.cpp">
+      <Filter>Display</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Property.cpp" />
+    <ClCompile Include="src\display\Display.cpp">
+      <Filter>Display</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

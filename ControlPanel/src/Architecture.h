@@ -1,0 +1,10 @@
+#ifndef __ELITEDUINO_ARCHITECTURE_H__
+#define __ELITEDUINO_ARCHITECTURE_H__
+
+#if defined(ARDUINO_TEENSY40) || defined(ARDUINO_TEENSY32)
+#	define ELITEDUINO_TEENSY
+#elif defined(ARDUINO_AVR_PROMICRO)
+#	define ELITEDUINO_PROMICRO
+#endif
+
+#endif 
