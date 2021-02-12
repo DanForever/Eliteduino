@@ -41,6 +41,7 @@
     <ClInclude Include="src\display\Display.h">
       <Filter>Display</Filter>
     </ClInclude>
+    <ClInclude Include="src\PCCommunications.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Eliteduino.cpp" />
@@ -84,5 +85,6 @@
     <ClCompile Include="src\display\Display.cpp">
       <Filter>Display</Filter>
     </ClCompile>
+    <ClCompile Include="src\PCCommunications.cpp" />
   </ItemGroup>
 </Project>

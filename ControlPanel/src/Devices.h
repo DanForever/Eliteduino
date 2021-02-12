@@ -32,6 +32,6 @@ namespace Buttons
 
 
 
-#endif ELITEDUINO_SCREEN
+#endif // ELITEDUINO_SCREEN
 
 #endif // __ELITEDUINO_DEVICES_H__
