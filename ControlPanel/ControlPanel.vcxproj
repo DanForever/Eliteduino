@@ -120,6 +120,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Architecture.h" />
+    <ClInclude Include="src\Containers.h" />
     <ClInclude Include="src\Devices.h" />
     <ClInclude Include="src\display\Assets.h" />
     <ClInclude Include="src\display\Database.h" />
@@ -133,16 +134,16 @@
     <ClInclude Include="__vm\.ControlPanel.vsarduino.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="data\screen\asteroidstation.c" />
-    <ClCompile Include="data\screen\commander.c" />
-    <ClCompile Include="data\screen\coriolis.c" />
-    <ClCompile Include="data\screen\megaship.c" />
-    <ClCompile Include="data\screen\ocellus.c" />
-    <ClCompile Include="data\screen\orbis.c" />
-    <ClCompile Include="data\screen\outpost.c" />
-    <ClCompile Include="data\screen\surfaceport.c" />
-    <ClCompile Include="data\screen\surfaceport2.c" />
-    <ClCompile Include="data\screen\system.c" />
+    <ClCompile Include="data\display\asteroidstation.c" />
+    <ClCompile Include="data\display\commander.c" />
+    <ClCompile Include="data\display\coriolis.c" />
+    <ClCompile Include="data\display\megaship.c" />
+    <ClCompile Include="data\display\ocellus.c" />
+    <ClCompile Include="data\display\orbis.c" />
+    <ClCompile Include="data\display\outpost.c" />
+    <ClCompile Include="data\display\surfaceport.c" />
+    <ClCompile Include="data\display\surfaceport2.c" />
+    <ClCompile Include="data\display\system.c" />
     <ClCompile Include="src\display\Display.cpp" />
     <ClCompile Include="src\display\Screen.cpp" />
     <ClCompile Include="src\display\ScreenGeneral.cpp" />

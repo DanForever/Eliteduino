@@ -1,3 +1,7 @@
+#include "../Devices.h"
+
+#ifdef ELITEDUINO_SCREEN
+
 #include "ScreenGeneral.h"
 
 #include "Assets.h"
@@ -88,25 +92,10 @@ namespace
 Eliteduino::Display::GeneralInfo::GeneralInfo( Database* database )
 	: m_database( database )
 {
-	m_database->Commander.Changed += [this]
-	{
-		DrawCommanderName();
-	};
-
-	m_database->System.Changed += [this]
-	{
-		DrawSystem();
-	};
-
-	m_database->Station.Changed += [this]
-	{
-		DrawStation();
-	};
-
-	m_database->StationType.Changed += [this]
-	{
-		DrawStation();
-	};
+	m_database->Commander.Changed += new Listener<GeneralInfo>( this, &GeneralInfo::DrawCommanderName );
+	m_database->System.Changed += new Listener<GeneralInfo>( this, &GeneralInfo::DrawSystem );
+	m_database->Station.Changed += new Listener<GeneralInfo>( this, &GeneralInfo::DrawStation );
+	m_database->StationType.Changed += new Listener<GeneralInfo>( this, &GeneralInfo::DrawStation );
 }
 
 void Eliteduino::Display::GeneralInfo::DrawCommanderName()
@@ -125,3 +114,5 @@ void Eliteduino::Display::GeneralInfo::DrawStation()
 {
 	DrawData( m_tft, MapStationTypeToImage( *m_database->StationType ), *m_database->Station, CalculateYOffset( 2 ) );
 }
+
+#endif // ELITEDUINO_SCREEN

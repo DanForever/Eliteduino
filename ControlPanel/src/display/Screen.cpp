@@ -1,3 +1,7 @@
+#include "../Devices.h"
+
+#ifdef ELITEDUINO_SCREEN
+
 #include "Screen.h"
 
 #include <SPI.h>
@@ -30,3 +34,5 @@ void Eliteduino::Display::Screen::PrintLine( const char* text )
 {
 	m_tft->println( text );
 }
+
+#endif // ELITEDUINO_SCREEN

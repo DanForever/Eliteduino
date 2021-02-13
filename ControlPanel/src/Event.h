@@ -1,28 +1,54 @@
 #ifndef __ELITEDUINO_EVENT_H__
 #define __ELITEDUINO_EVENT_H__
 
-#include <functional>
-#include <vector>
+#include "Containers.h"
 
 namespace Eliteduino
 {
-	template< typename... Args >
+	//--------------------------------------------------------------------------------------------------------
+	class ListenerBase
+	{
+	public:
+		virtual void Invoke() = 0;
+	};
+
+	//--------------------------------------------------------------------------------------------------------
+	template <typename TSelf>
+	class Listener : public ListenerBase
+	{
+	public:
+		using Callback = void ( TSelf::* )();
+
+		Listener( TSelf* self, Callback callback )
+			: m_self( self )
+			, m_callback(callback)
+		{}
+
+		void Invoke() final
+		{
+			( m_self->*m_callback )();
+		}
+
+	private:
+		TSelf* m_self;
+		Callback m_callback;
+	};
+
+	//--------------------------------------------------------------------------------------------------------
 	class Event
 	{
 	public:
-		using Callback = std::function<void( Args... )>;
-
-		void operator+=( Callback&& callback ) { m_listeners.push_back( std::move( callback ) ); }
-		void operator()( Args... args )
+		void operator+=( ListenerBase* listener ) { m_listeners.push_back( listener ); }
+		void operator()()
 		{
-			for ( Callback& callback : m_listeners )
+			for ( ListenerBase*& listener : m_listeners )
 			{
-				callback( std::forward<Args>( args )... );
+				listener->Invoke();
 			}
 		}
 
 	private:
-		std::vector<Callback> m_listeners;
+		Containers::Vector<ListenerBase*> m_listeners;
 	};
 }
 

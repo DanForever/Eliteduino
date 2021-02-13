@@ -1,3 +1,7 @@
+#include "../Devices.h"
+
+#ifdef ELITEDUINO_SCREEN
+
 #include "Display.h"
 
 #include "ScreenGeneral.h"
@@ -90,3 +94,5 @@ void Eliteduino::Display::Display::ProcessStatReport( const Message& message )
 		Serial.println( (int)statType );
 	}
 }
+
+#endif // ELITEDUINO_SCREEN

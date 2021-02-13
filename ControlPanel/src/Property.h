@@ -31,7 +31,7 @@ namespace Eliteduino
 			return Get();
 		}
 
-		Event<> Changed;
+		Event Changed;
 
 	private:
 		T m_value = {};
@@ -59,7 +59,7 @@ namespace Eliteduino
 			return Get();
 		}
 
-		Event<> Changed;
+		Event Changed;
 
 	private:
 		char m_text[ 64 ];

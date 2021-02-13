@@ -1,7 +1,7 @@
 #ifndef __ELITEDUINO_PC_COMMUNICATIONS_H__
 #define __ELITEDUINO_PC_COMMUNICATIONS_H__
 
-#include <cstdint>
+#include <stdint.h>
 
 namespace Eliteduino
 {

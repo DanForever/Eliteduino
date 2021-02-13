@@ -1,6 +1,6 @@
 #include "Property.h"
 
-#include <cstring>
+#include <string.h>
 
 void Eliteduino::Property<const char*>::Set( const char* text )
 {
