@@ -1,10 +1,23 @@
 #include "PCCommunications.h"
 
-#include <Arduino.h>
+#include <stdint.h>
+
+#include "Architecture.h"
+
+#ifdef ELITEDUINO_TEENSY
+#	include "PCCommunicationsTeensy.h"
+#else
+#	include "PCCommunicationsArduino.h"
+#endif
 
 #define DO_NOT_WAIT 0
 
+void Eliteduino::PCCommunications::Initialize()
+{
+	Hid::Initialize();
+}
+
 void Eliteduino::PCCommunications::Update()
 {
-	m_message.Size = RawHID.recv( &m_message.Data, DO_NOT_WAIT );
+	m_message.Size = Hid::Recieve( reinterpret_cast<uint8_t*>( &m_message.Data ) );
 }

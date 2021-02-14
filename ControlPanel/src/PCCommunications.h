@@ -26,6 +26,7 @@ namespace Eliteduino
 	class PCCommunications
 	{
 	public:
+		void Initialize();
 		void Update();
 
 		bool MessageReceived() const { return m_message.Size > 0; }

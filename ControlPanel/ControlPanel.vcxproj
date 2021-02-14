@@ -130,6 +130,8 @@
     <ClInclude Include="src\Eliteduino.h" />
     <ClInclude Include="src\Event.h" />
     <ClInclude Include="src\PCCommunications.h" />
+    <ClInclude Include="src\PCCommunicationsArduino.h" />
+    <ClInclude Include="src\PCCommunicationsTeensy.h" />
     <ClInclude Include="src\Property.h" />
     <ClInclude Include="__vm\.ControlPanel.vsarduino.h" />
   </ItemGroup>
@@ -149,6 +151,7 @@
     <ClCompile Include="src\display\ScreenGeneral.cpp" />
     <ClCompile Include="src\Eliteduino.cpp" />
     <ClCompile Include="src\PCCommunications.cpp" />
+    <ClCompile Include="src\PCCommunicationsArduino.cpp" />
     <ClCompile Include="src\Property.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

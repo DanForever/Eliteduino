@@ -43,6 +43,8 @@
     </ClInclude>
     <ClInclude Include="src\PCCommunications.h" />
     <ClInclude Include="src\Containers.h" />
+    <ClInclude Include="src\PCCommunicationsArduino.h" />
+    <ClInclude Include="src\PCCommunicationsTeensy.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Eliteduino.cpp" />
@@ -87,5 +89,6 @@
     <ClCompile Include="data\display\commander.c">
       <Filter>Display\Assets</Filter>
     </ClCompile>
+    <ClCompile Include="src\PCCommunicationsArduino.cpp" />
   </ItemGroup>
 </Project>

@@ -6,6 +6,8 @@ void setup()
 {
 	Serial.begin( 9600 );
 
+	Comms.Initialize();
+
 	DISPLAY_SETUP();
 }
 
