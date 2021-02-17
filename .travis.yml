@@ -16,6 +16,8 @@ install:
   - /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_1.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :1 -ac -screen 0 1280x1024x16
   - sleep 3
   - ./TeensyduinoInstall.linux64 --dir=$HOME/arduino_ide/arduino-$ARDUINO_IDE_VERSION
+  # Install libaries
+  - $HOME/arduino_ide/arduino-$ARDUINO_IDE_VERSION/arduino --install-library "Bounce2"
 before_script:
   # Replace standard teensy headers with our custom ones
   - cp -rf ControlPanel/Build/Arduino/* $HOME/arduino_ide/*
