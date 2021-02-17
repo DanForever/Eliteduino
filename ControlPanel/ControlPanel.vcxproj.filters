@@ -10,6 +10,9 @@
     <Filter Include="Display\Assets">
       <UniqueIdentifier>{d9a05b3f-84c5-451a-b6af-d058f1f2050d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Controls">
+      <UniqueIdentifier>{f0e99cfd-91dd-444a-af0c-2dd86cc29b6f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ControlPanel.ino" />
@@ -45,6 +48,12 @@
     <ClInclude Include="src\Containers.h" />
     <ClInclude Include="src\PCCommunicationsArduino.h" />
     <ClInclude Include="src\PCCommunicationsTeensy.h" />
+    <ClInclude Include="src\controls\Button.h">
+      <Filter>Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="src\controls\Matrix.h">
+      <Filter>Controls</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Eliteduino.cpp" />
@@ -90,5 +99,11 @@
       <Filter>Display\Assets</Filter>
     </ClCompile>
     <ClCompile Include="src\PCCommunicationsArduino.cpp" />
+    <ClCompile Include="src\controls\Button.cpp">
+      <Filter>Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="src\controls\Matrix.cpp">
+      <Filter>Controls</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

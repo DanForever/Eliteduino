@@ -9,6 +9,7 @@ void setup()
 	Comms.Initialize();
 
 	DISPLAY_SETUP();
+	BUTTONS_SETUP();
 }
 
 void loop()
@@ -23,4 +24,5 @@ void loop()
 	}
 
 	DISPLAY_UPDATE();
+	BUTTONS_UPDATE();
 }

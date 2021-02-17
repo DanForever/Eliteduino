@@ -2,36 +2,42 @@
 #define __ELITEDUINO_DEVICES_H__
 
 #include "Architecture.h"
+#include <stdint.h>
+
+// todo: Move to better location
+template<class T, int N>
+constexpr int ArraySize( T( & )[ N ] ) { return N; }
 
 // Temporary until proper device configurations are figured out and defined
-#define ELITEDUINO_SCREEN
+#define ELITEDUINO_DEVICE_TEENSY_BUTTONSANDSCREEN
+//#define ELITEDUINO_DEVICE_PROMICRO_16BUTTONSONLY
+
+//------------------------------------------------------------------------------------------------
 
 #ifdef ELITEDUINO_DEVICE_PROMICRO_16BUTTONSONLY
-#	define ELITEDUINO_DEVICE_BUTTON_ROWS 4
-#	define ELITEDUINO_DEVICE_BUTTON_COLUMNS 4
-#	define ELITEDUINO_DEVICE_BUTTON_COLUMN_PINS { 2, 3, 4, 5 }
-#	define ELITEDUINO_DEVICE_BUTTON_ROW_PINS { 6, 7, 8, 9 }
-
 #	define ELITEDUINO_BUTTONS
+const uint8_t BUTTON_COLUMNS[] = { 2, 3, 4, 5 };
+const uint8_t BUTTON_ROWS[] = { 6, 7, 8, 9 };
+const uint8_t BUTTON_COLUMN_COUNT = ArraySize( BUTTON_COLUMNS );
+const uint8_t BUTTON_ROW_COUNT = ArraySize( BUTTON_ROWS );
+const uint8_t DEBOUNCE_INTERVAL = 25;
+
 #endif
 
-#ifdef ELITEDUINO_BUTTONS
+//------------------------------------------------------------------------------------------------
 
-namespace Buttons
-{
-	struct
-	{
-		uint8_t ColumnPins[ ELITEDUINO_DEVICE_BUTTON_COLUMNS ];
-		uint8_t RowPins[ ELITEDUINO_DEVICE_BUTTON_ROWS ];
-	} Config = { ELITEDUINO_DEVICE_BUTTON_COLUMN_PINS, ELITEDUINO_DEVICE_BUTTON_ROW_PINS };
-}
+#ifdef ELITEDUINO_DEVICE_TEENSY_BUTTONSANDSCREEN
 
-#endif // ELITEDUINO_BUTTONS
+// todo: Actual values (for now they're copied from the pro micro)
+const uint8_t BUTTON_COLUMNS[] = { 2, 3, 4, 5 };
+const uint8_t BUTTON_ROWS[] = { 6, 7, 8, 9 };
+const uint8_t BUTTON_COLUMN_COUNT = ArraySize( BUTTON_COLUMNS );
+const uint8_t BUTTON_ROW_COUNT = ArraySize( BUTTON_ROWS );
+const uint8_t DEBOUNCE_INTERVAL = 25;
 
-#ifdef ELITEDUINO_SCREEN
+#define ELITEDUINO_SCREEN
+#define ELITEDUINO_BUTTONS
 
-
-
-#endif // ELITEDUINO_SCREEN
+#endif ELITEDUINO_DEVICE_TEENSY_BUTTONSANDSCREEN
 
 #endif // __ELITEDUINO_DEVICES_H__

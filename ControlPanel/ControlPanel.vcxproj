@@ -121,6 +121,8 @@
   <ItemGroup>
     <ClInclude Include="src\Architecture.h" />
     <ClInclude Include="src\Containers.h" />
+    <ClInclude Include="src\controls\Button.h" />
+    <ClInclude Include="src\controls\Matrix.h" />
     <ClInclude Include="src\Devices.h" />
     <ClInclude Include="src\display\Assets.h" />
     <ClInclude Include="src\display\Database.h" />
@@ -146,6 +148,8 @@
     <ClCompile Include="data\display\surfaceport.c" />
     <ClCompile Include="data\display\surfaceport2.c" />
     <ClCompile Include="data\display\system.c" />
+    <ClCompile Include="src\controls\Button.cpp" />
+    <ClCompile Include="src\controls\Matrix.cpp" />
     <ClCompile Include="src\display\Display.cpp" />
     <ClCompile Include="src\display\Screen.cpp" />
     <ClCompile Include="src\display\ScreenGeneral.cpp" />

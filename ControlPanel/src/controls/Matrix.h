@@ -1,0 +1,38 @@
+#ifndef __ELITEDUINO_MATRIX_H__
+#define __ELITEDUINO_MATRIX_H__
+
+#include <stdint.h>
+
+namespace Eliteduino
+{
+	namespace Controls
+	{
+		class Button;
+
+		class Matrix
+		{
+		public:
+			Matrix() = default;
+			~Matrix() = default;
+
+			void Initialize( const uint8_t* rows, const uint8_t* columns, uint8_t numRows, uint8_t numCols, int debounceInterval );
+
+			void SetPressedState( uint8_t row, uint8_t column, uint8_t state );
+			void Update();
+
+		private:
+			void ActivateColumn( uint8_t column );
+			void DeactivateColumn( uint8_t column );
+
+			uint8_t Index( uint8_t row, uint8_t column );
+
+			Button* m_buttons;
+			const uint8_t* m_rows = nullptr;
+			const uint8_t* m_columns = nullptr;
+			uint8_t m_rowCount = 0;
+			uint8_t m_columnCount = 0;
+		};
+	}
+}
+
+#endif // __ELITEDUINO_MATRIX_H__
