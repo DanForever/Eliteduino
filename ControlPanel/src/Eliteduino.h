@@ -26,11 +26,11 @@
 
 namespace Eliteduino
 {
-	extern void SetupButtons();
+	extern void SetupButtons( PCCommunications* comms );
 	extern void UpdateButtons();
 }
 
-#	define BUTTONS_SETUP() Eliteduino::SetupButtons()
+#	define BUTTONS_SETUP(comms) Eliteduino::SetupButtons(comms)
 #	define BUTTONS_UPDATE() Eliteduino::UpdateButtons()
 #	define BUTTONS_PROCESS_MESSAGE(...)
 

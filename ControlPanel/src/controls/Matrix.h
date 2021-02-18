@@ -5,6 +5,8 @@
 
 namespace Eliteduino
 {
+	class PCCommunications;
+
 	namespace Controls
 	{
 		class Button;
@@ -15,7 +17,7 @@ namespace Eliteduino
 			Matrix() = default;
 			~Matrix() = default;
 
-			void Initialize( const uint8_t* rows, const uint8_t* columns, uint8_t numRows, uint8_t numCols, int debounceInterval );
+			void Initialize( const uint8_t* rows, const uint8_t* columns, uint8_t numRows, uint8_t numCols, int debounceInterval, PCCommunications* comms );
 
 			void SetPressedState( uint8_t row, uint8_t column, uint8_t state );
 			void Update();

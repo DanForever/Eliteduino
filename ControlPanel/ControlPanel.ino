@@ -9,7 +9,7 @@ void setup()
 	Comms.Initialize();
 
 	DISPLAY_SETUP();
-	BUTTONS_SETUP();
+	BUTTONS_SETUP(&Comms);
 }
 
 void loop()

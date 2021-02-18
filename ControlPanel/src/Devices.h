@@ -22,7 +22,7 @@ const uint8_t BUTTON_COLUMN_COUNT = ArraySize( BUTTON_COLUMNS );
 const uint8_t BUTTON_ROW_COUNT = ArraySize( BUTTON_ROWS );
 const uint8_t DEBOUNCE_INTERVAL = 25;
 
-#endif
+#endif // ELITEDUINO_DEVICE_PROMICRO_16BUTTONSONLY
 
 //------------------------------------------------------------------------------------------------
 
@@ -38,6 +38,6 @@ const uint8_t DEBOUNCE_INTERVAL = 25;
 #define ELITEDUINO_SCREEN
 #define ELITEDUINO_BUTTONS
 
-#endif ELITEDUINO_DEVICE_TEENSY_BUTTONSANDSCREEN
+#endif // ELITEDUINO_DEVICE_TEENSY_BUTTONSANDSCREEN
 
 #endif // __ELITEDUINO_DEVICES_H__

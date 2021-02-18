@@ -28,7 +28,7 @@ inline void Eliteduino::Controls::Matrix::DeactivateColumn( uint8_t column )
 	pinMode( columnPin, INPUT );
 }
 
-void Eliteduino::Controls::Matrix::Initialize( const uint8_t* rows, const uint8_t* columns, uint8_t numRows, uint8_t numCols, int debounceInterval )
+void Eliteduino::Controls::Matrix::Initialize( const uint8_t* rows, const uint8_t* columns, uint8_t numRows, uint8_t numCols, int debounceInterval, PCCommunications* comms )
 {
 	m_rows = rows;
 	m_columns = columns;
@@ -50,7 +50,7 @@ void Eliteduino::Controls::Matrix::Initialize( const uint8_t* rows, const uint8_
 			Button& button = m_buttons[ index ];
 
 			const uint8_t rowPin = m_rows[ row ];
-			button.Initialize( rowPin, LOW );
+			button.Initialize( rowPin, LOW, comms );
 		}
 
 		DeactivateColumn( column );

@@ -13,6 +13,12 @@
     <Filter Include="Controls">
       <UniqueIdentifier>{f0e99cfd-91dd-444a-af0c-2dd86cc29b6f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Communications">
+      <UniqueIdentifier>{935316f9-debc-4990-8835-8547edd9e477}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Communications\Platform Specific">
+      <UniqueIdentifier>{db6641de-2f0f-4c73-ba3b-5b8ed37bef60}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ControlPanel.ino" />
@@ -44,15 +50,24 @@
     <ClInclude Include="src\display\Display.h">
       <Filter>Display</Filter>
     </ClInclude>
-    <ClInclude Include="src\PCCommunications.h" />
     <ClInclude Include="src\Containers.h" />
-    <ClInclude Include="src\PCCommunicationsArduino.h" />
-    <ClInclude Include="src\PCCommunicationsTeensy.h" />
     <ClInclude Include="src\controls\Button.h">
       <Filter>Controls</Filter>
     </ClInclude>
     <ClInclude Include="src\controls\Matrix.h">
       <Filter>Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PCCommunications.h">
+      <Filter>Communications</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PCCommunicationsArduino.h">
+      <Filter>Communications\Platform Specific</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PCCommunicationsTeensy.h">
+      <Filter>Communications\Platform Specific</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PCCommunicationsDefines.h">
+      <Filter>Communications</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -67,7 +82,6 @@
     <ClCompile Include="src\display\Display.cpp">
       <Filter>Display</Filter>
     </ClCompile>
-    <ClCompile Include="src\PCCommunications.cpp" />
     <ClCompile Include="data\display\system.c">
       <Filter>Display\Assets</Filter>
     </ClCompile>
@@ -98,12 +112,17 @@
     <ClCompile Include="data\display\commander.c">
       <Filter>Display\Assets</Filter>
     </ClCompile>
-    <ClCompile Include="src\PCCommunicationsArduino.cpp" />
     <ClCompile Include="src\controls\Button.cpp">
       <Filter>Controls</Filter>
     </ClCompile>
     <ClCompile Include="src\controls\Matrix.cpp">
       <Filter>Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PCCommunications.cpp">
+      <Filter>Communications</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PCCommunicationsArduino.cpp">
+      <Filter>Communications\Platform Specific</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

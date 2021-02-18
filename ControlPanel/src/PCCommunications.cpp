@@ -21,3 +21,8 @@ void Eliteduino::PCCommunications::Update()
 {
 	m_message.Size = Hid::Recieve( reinterpret_cast<uint8_t*>( &m_message.Data ) );
 }
+
+void Eliteduino::PCCommunications::SendInputEvent( Eliteduino::eControlType controlType, Eliteduino::eEventType eventType, uint8_t controlId )
+{
+	Hid::SendInputEvent( controlType, eventType, controlId );
+}

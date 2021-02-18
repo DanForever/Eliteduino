@@ -23,6 +23,9 @@ namespace Eliteduino
 		MessageData Data;
 	};
 
+	enum class eControlType;
+	enum class eEventType;
+
 	class PCCommunications
 	{
 	public:
@@ -31,6 +34,8 @@ namespace Eliteduino
 
 		bool MessageReceived() const { return m_message.Size > 0; }
 		const Message& GetMessage() const { return m_message; }
+
+		void SendInputEvent( eControlType controlType, eEventType eventType, uint8_t controlId );
 
 	private:
 		Message m_message;

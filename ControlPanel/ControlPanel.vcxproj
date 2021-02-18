@@ -133,6 +133,7 @@
     <ClInclude Include="src\Event.h" />
     <ClInclude Include="src\PCCommunications.h" />
     <ClInclude Include="src\PCCommunicationsArduino.h" />
+    <ClInclude Include="src\PCCommunicationsDefines.h" />
     <ClInclude Include="src\PCCommunicationsTeensy.h" />
     <ClInclude Include="src\Property.h" />
     <ClInclude Include="__vm\.ControlPanel.vsarduino.h" />

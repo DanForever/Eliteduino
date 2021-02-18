@@ -6,6 +6,8 @@
 
 namespace Eliteduino
 {
+	class PCCommunications;
+
 	namespace Controls
 	{
 		class Button
@@ -14,7 +16,7 @@ namespace Eliteduino
 			Button() = default;
 			~Button() = default;
 
-			void Initialize( uint8_t pin, uint8_t pressedState );
+			void Initialize( uint8_t pin, uint8_t pressedState, PCCommunications* comms );
 			void SetDebounceInterval( int miliseconds );
 
 			void Update();
@@ -23,6 +25,7 @@ namespace Eliteduino
 
 		private:
 			Bounce2::Button m_button;
+			PCCommunications* m_comms;
 		};
 	}
 }

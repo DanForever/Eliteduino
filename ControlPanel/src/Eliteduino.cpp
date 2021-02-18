@@ -8,9 +8,9 @@
 
 Eliteduino::Controls::Matrix gMatrix;
 
-void Eliteduino::SetupButtons()
+void Eliteduino::SetupButtons( PCCommunications* comms )
 {
-	gMatrix.Initialize( BUTTON_ROWS, BUTTON_COLUMNS, BUTTON_COLUMN_COUNT, BUTTON_ROW_COUNT, DEBOUNCE_INTERVAL );
+	gMatrix.Initialize( BUTTON_ROWS, BUTTON_COLUMNS, BUTTON_COLUMN_COUNT, BUTTON_ROW_COUNT, DEBOUNCE_INTERVAL, comms );
 }
 
 void Eliteduino::UpdateButtons()

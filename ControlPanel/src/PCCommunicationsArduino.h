@@ -3,6 +3,8 @@
 
 #include <stdint.h>
 
+#include "PCCommunicationsDefines.h"
+
 namespace Eliteduino
 {
 	namespace Hid
@@ -10,6 +12,8 @@ namespace Eliteduino
 		void Initialize();
 
 		uint8_t Recieve( uint8_t* buffer );
+
+		void SendInputEvent( eControlType controlType, eEventType eventType, uint8_t controlId );
 	}
 }
 
