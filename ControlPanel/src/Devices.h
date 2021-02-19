@@ -9,7 +9,7 @@ template<class T, int N>
 constexpr int ArraySize( T( & )[ N ] ) { return N; }
 
 // Temporary until proper device configurations are figured out and defined
-#define ELITEDUINO_DEVICE_TEENSY_BUTTONSANDSCREEN
+//#define ELITEDUINO_DEVICE_TEENSY_BUTTONSANDSCREEN
 //#define ELITEDUINO_DEVICE_PROMICRO_16BUTTONSONLY
 
 //------------------------------------------------------------------------------------------------
