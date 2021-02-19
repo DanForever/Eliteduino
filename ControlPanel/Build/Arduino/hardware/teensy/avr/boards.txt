@@ -229,7 +229,7 @@ teensy40.build.flags.common=-g -Wall -ffunction-sections -fdata-sections -nostdl
 teensy40.build.flags.dep=-MMD
 teensy40.build.flags.optimize=-Os
 teensy40.build.flags.cpu=-mthumb -mcpu=cortex-m7 -mfloat-abi=hard -mfpu=fpv5-d16
-teensy40.build.flags.defs=-D__IMXRT1062__ -DTEENSYDUINO=153
+teensy40.build.flags.defs=-D__IMXRT1062__ -DTEENSYDUINO=153 -DELITEDUINO_DEVICE_TEENSY_BUTTONSANDSCREEN
 teensy40.build.flags.cpp=-std=gnu++14 -fno-exceptions -fpermissive -fno-rtti -fno-threadsafe-statics -felide-constructors -Wno-error=narrowing
 teensy40.build.flags.c=
 teensy40.build.flags.S=-x assembler-with-cpp

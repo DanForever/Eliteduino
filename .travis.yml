@@ -1,29 +1,51 @@
-language: cpp
-sudo: false
-env:
-  global:
+language: generic
+
+teensy: &teensy
+  env:
     - ARDUINO_IDE_VERSION="1.8.11"
     - DISPLAY=:1.0
     - TEENSYDUINO_VERSION=153
-install:
-  # Install Arduino
-  - wget --quiet https://downloads.arduino.cc/arduino-$ARDUINO_IDE_VERSION-linux64.tar.xz
-  - mkdir $HOME/arduino_ide
-  - tar xf arduino-$ARDUINO_IDE_VERSION-linux64.tar.xz -C $HOME/arduino_ide/ 
-  # Install Teensyduino
-  - curl -fsSL https://www.pjrc.com/teensy/td_$TEENSYDUINO_VERSION/TeensyduinoInstall.linux64 -o TeensyduinoInstall.linux64
-  - chmod +x TeensyduinoInstall.linux64
-  - /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_1.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :1 -ac -screen 0 1280x1024x16
-  - sleep 3
-  - ./TeensyduinoInstall.linux64 --dir=$HOME/arduino_ide/arduino-$ARDUINO_IDE_VERSION
-  # Install libaries
-  - $HOME/arduino_ide/arduino-$ARDUINO_IDE_VERSION/arduino --install-library "Bounce2"
-before_script:
-  # Replace standard teensy headers with our custom ones
-  - cp -rf ControlPanel/Build/Arduino/* $HOME/arduino_ide/*
-script:
-  - $HOME/arduino_ide/arduino-$ARDUINO_IDE_VERSION/arduino --verbose --board "teensy:avr:teensy40:usb=kbrawhid,speed=600,opt=o2std,keys=en-us" --verify ControlPanel/ControlPanel.ino
+  install:
+    # Install Arduino
+    - wget --quiet https://downloads.arduino.cc/arduino-$ARDUINO_IDE_VERSION-linux64.tar.xz
+    - mkdir $HOME/arduino_ide
+    - tar xf arduino-$ARDUINO_IDE_VERSION-linux64.tar.xz -C $HOME/arduino_ide/
+    # Install Teensyduino
+    - curl -fsSL https://www.pjrc.com/teensy/td_$TEENSYDUINO_VERSION/TeensyduinoInstall.linux64 -o TeensyduinoInstall.linux64
+    - chmod +x TeensyduinoInstall.linux64
+    - /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_1.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :1 -ac -screen 0 1280x1024x16
+    - sleep 3
+    - ./TeensyduinoInstall.linux64 --dir=$HOME/arduino_ide/arduino-$ARDUINO_IDE_VERSION
+    # Install libaries
+    - $HOME/arduino_ide/arduino-$ARDUINO_IDE_VERSION/arduino --install-library "Bounce2"
+  before_script:
+    # Replace standard teensy headers with our custom ones
+    - cp -rf ControlPanel/Build/Arduino/* $HOME/arduino_ide/*
+  script:
+    - $HOME/arduino_ide/arduino-$ARDUINO_IDE_VERSION/arduino --verbose --board "teensy:avr:teensy40:usb=kbrawhid,speed=600,opt=o2std,keys=en-us" --verify ControlPanel/ControlPanel.ino
 
-# Example build targets
-#arduino --verbose --board "teensy:avr:teensy40:usb=kbrawhid,speed=600,opt=o2std,keys=en-us" --verify ControlPanel.ino
-#arduino --board SparkFun:avr:promicro:cpu=8MHzatmega32U4 --verbose --verify LCDemoMatrix.ino
+promicro8: &promicro8
+  env:
+    - SPARKFUN_BOARDS_URL="https://raw.githubusercontent.com/sparkfun/Arduino_Boards/master/IDE_Board_Manager/package_sparkfun_index.json"
+  install:
+    # Install Arduino
+    - mkdir $HOME/arduino_ide
+    - curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | BINDIR=$HOME/arduino_ide sh
+    # Install Sparkfun avr boards
+    - $HOME/arduino_ide/arduino-cli core --additional-urls $SPARKFUN_BOARDS_URL install SparkFun:avr
+    # Install needed libraries
+    - $HOME/arduino_ide/arduino-cli lib install "Bounce2"
+    - $HOME/arduino_ide/arduino-cli lib install "HID-Project"
+  script:
+    - $HOME/arduino_ide/arduino-cli compile -b SparkFun:avr:promicro:cpu=8MHzatmega32U4 --build-property compiler.cpp.extra_flags=-D$DEVICE_CONFIG ControlPanel/ControlPanel.ino
+
+jobs:
+  include:
+  - name: Teensyduino 4.0
+    env:
+      - DEVICE_CONFIG=ELITEDUINO_DEVICE_TEENSY_BUTTONSANDSCREEN
+    <<: *teensy
+  - name: Pro micro 8Mhz
+    env:
+      - DEVICE_CONFIG=ELITEDUINO_DEVICE_PROMICRO_16BUTTONSONLY
+    <<: *promicro8
