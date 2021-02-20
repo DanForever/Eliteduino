@@ -39,15 +39,15 @@ promicro8: &promicro8
     - $HOME/arduino_ide/arduino-cli lib install "HID-Project"
     - $HOME/arduino_ide/arduino-cli lib install "ArxContainer"
   script:
-    - $HOME/arduino_ide/arduino-cli compile -b SparkFun:avr:promicro:cpu=8MHzatmega32U4 --build-property compiler.cpp.extra_flags=-D${DEVICE_CONFIG} ControlPanel/ControlPanel.ino
+    - $HOME/arduino_ide/arduino-cli compile -b SparkFun:avr:promicro:cpu=8MHzatmega32U4 --build-property compiler.cpp.extra_flags=$DEVICE_CONFIG ControlPanel/ControlPanel.ino
 
 jobs:
   include:
   - name: Teensyduino 4.0
     env:
-      - DEVICE_CONFIG=ELITEDUINO_DEVICE_TEENSY_BUTTONSANDSCREEN
+      - DEVICE_CONFIG=-DELITEDUINO_DEVICE_TEENSY_BUTTONSANDSCREEN
     <<: *teensy
   - name: Pro micro 8Mhz
     env:
-      - DEVICE_CONFIG=ELITEDUINO_DEVICE_PROMICRO_16BUTTONSONLY
+      - DEVICE_CONFIG=-DELITEDUINO_DEVICE_PROMICRO_16BUTTONSONLY
     <<: *promicro8
