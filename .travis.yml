@@ -37,6 +37,7 @@ promicro8: &promicro8
     # Install needed libraries
     - $HOME/arduino_ide/arduino-cli lib install "Bounce2"
     - $HOME/arduino_ide/arduino-cli lib install "HID-Project"
+    - $HOME/arduino_ide/arduino-cli lib install "ArxContainer"
   script:
     - $HOME/arduino_ide/arduino-cli compile -b SparkFun:avr:promicro:cpu=8MHzatmega32U4 --build-property compiler.cpp.extra_flags=-D$DEVICE_CONFIG ControlPanel/ControlPanel.ino
 
