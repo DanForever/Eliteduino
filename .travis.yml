@@ -31,7 +31,8 @@ promicro8: &promicro8
     # Install Arduino
     - mkdir $HOME/arduino_ide
     - curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | BINDIR=$HOME/arduino_ide sh
-    # Install Sparkfun avr boards
+    # Install Sparkfun avr boards (also install the standard arduino boards as arduino-cli doesn't do that by default)
+    - $HOME/arduino_ide/arduino-cli core install arduino:avr
     - $HOME/arduino_ide/arduino-cli core --additional-urls $SPARKFUN_BOARDS_URL install SparkFun:avr
     # Install needed libraries
     - $HOME/arduino_ide/arduino-cli lib install "Bounce2"
