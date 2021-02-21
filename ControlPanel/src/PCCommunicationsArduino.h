@@ -13,7 +13,7 @@ namespace Eliteduino
 
 		uint8_t Recieve( uint8_t* buffer );
 
-		void SendInputEvent( eControlType controlType, eEventType eventType, uint8_t controlId );
+		void SendInputEvent( eVirtualControlType controlType, eEventType eventType, uint8_t controlId );
 	}
 }
 

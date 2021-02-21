@@ -13,7 +13,7 @@ namespace Eliteduino
 
 		inline uint8_t Recieve( uint8_t* buffer ) { return RawHID.recv( buffer, DO_NOT_WAIT ); }
 
-		void SendInputEvent( eControlType controlType, eEventType eventType, uint8_t controlId ) {}
+		void SendInputEvent( eVirtualControlType controlType, eEventType eventType, uint8_t controlId ) {}
 	}
 }
 

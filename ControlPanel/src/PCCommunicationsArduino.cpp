@@ -77,15 +77,15 @@ uint8_t Eliteduino::Hid::Recieve( uint8_t* buffer )
 	return bytesToRead;
 }
 
-void Eliteduino::Hid::SendInputEvent( eControlType controlType, eEventType eventType, uint8_t controlId )
+void Eliteduino::Hid::SendInputEvent( eVirtualControlType controlType, eEventType eventType, uint8_t controlId )
 {
 	switch ( controlType )
 	{
-	case eControlType::Keyboard:
+	case eVirtualControlType::Keyboard:
 		SendKeyboardEvent( eventType, controlId );
 		break;
 
-	case eControlType::Gamepad:
+	case eVirtualControlType::Gamepad:
 		SendGamepadEvent( eventType, controlId );
 		break;
 	}

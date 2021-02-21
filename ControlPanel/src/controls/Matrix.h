@@ -10,6 +10,7 @@ namespace Eliteduino
 	namespace Controls
 	{
 		class Button;
+		union Binding;
 
 		class Matrix
 		{
@@ -19,14 +20,16 @@ namespace Eliteduino
 
 			void Initialize( const uint8_t* rows, const uint8_t* columns, uint8_t numRows, uint8_t numCols, int debounceInterval, PCCommunications* comms );
 
-			void SetPressedState( uint8_t row, uint8_t column, uint8_t state );
+			void SetNormallyOpen( uint8_t index, bool isOpen );
+			void SetNormallyOpen( uint8_t row, uint8_t column, bool isOpen );
+			void SetBinding( uint8_t index, const Binding* binding );
+			void SetBinding( uint8_t row, uint8_t column, const Binding* binding );
+
 			void Update();
 
 		private:
 			void ActivateColumn( uint8_t column );
 			void DeactivateColumn( uint8_t column );
-
-			uint8_t Index( uint8_t row, uint8_t column );
 
 			Button* m_buttons;
 			const uint8_t* m_rows = nullptr;

@@ -5,13 +5,9 @@
 #include "Matrix.h"
 
 #include "Button.h"
+#include "Utility.h"
 
 #include <Arduino.h>
-
-inline uint8_t Eliteduino::Controls::Matrix::Index( uint8_t row, uint8_t column )
-{
-	return row + ( column * m_rowCount );
-}
 
 inline void Eliteduino::Controls::Matrix::ActivateColumn( uint8_t column )
 {
@@ -46,7 +42,7 @@ void Eliteduino::Controls::Matrix::Initialize( const uint8_t* rows, const uint8_
 
 		for ( uint8_t row = 0; row < m_rowCount; ++row )
 		{
-			const uint8_t index = Index( row, column );
+			const uint8_t index = ButtonIndex( row, column, m_rowCount );
 			Button& button = m_buttons[ index ];
 
 			const uint8_t rowPin = m_rows[ row ];
@@ -57,8 +53,28 @@ void Eliteduino::Controls::Matrix::Initialize( const uint8_t* rows, const uint8_
 	}
 }
 
-void Eliteduino::Controls::Matrix::SetPressedState( uint8_t row, uint8_t column, uint8_t state )
+void Eliteduino::Controls::Matrix::SetNormallyOpen( uint8_t index, bool isOpen )
 {
+	Button& button = m_buttons[ index ];
+	button.SetNormallyOpen( isOpen );
+}
+
+void Eliteduino::Controls::Matrix::SetNormallyOpen( uint8_t row, uint8_t column, bool isOpen )
+{
+	const uint8_t index = ButtonIndex( row, column, m_rowCount );
+	SetNormallyOpen( index, isOpen );
+}
+
+void Eliteduino::Controls::Matrix::SetBinding( uint8_t index, const Binding* binding )
+{
+	Button& button = m_buttons[ index ];
+	button.SetBinding( binding );
+}
+
+void Eliteduino::Controls::Matrix::SetBinding( uint8_t row, uint8_t column, const Binding* binding )
+{
+	const uint8_t index = ButtonIndex( row, column, m_rowCount );
+	SetBinding( index, binding );
 }
 
 void Eliteduino::Controls::Matrix::Update()
@@ -69,7 +85,7 @@ void Eliteduino::Controls::Matrix::Update()
 
 		for ( uint8_t row = 0; row < m_rowCount; ++row )
 		{
-			const uint8_t index = Index( row, column );
+			const uint8_t index = ButtonIndex( row, column, m_rowCount );
 			Button& button = m_buttons[ index ];
 
 //			Serial.print( "Row: " );

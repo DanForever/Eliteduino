@@ -19,6 +19,9 @@
     <Filter Include="Communications\Platform Specific">
       <UniqueIdentifier>{db6641de-2f0f-4c73-ba3b-5b8ed37bef60}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Debug">
+      <UniqueIdentifier>{e53faa69-7afa-4c0a-af50-91c14f569291}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ControlPanel.ino" />
@@ -68,6 +71,18 @@
     </ClInclude>
     <ClInclude Include="src\PCCommunicationsDefines.h">
       <Filter>Communications</Filter>
+    </ClInclude>
+    <ClInclude Include="src\controls\Binding.h">
+      <Filter>Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="src\controls\BindingManager.h">
+      <Filter>Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="src\debug\Debug.h">
+      <Filter>Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="src\controls\Utility.h">
+      <Filter>Controls</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -123,6 +138,9 @@
     </ClCompile>
     <ClCompile Include="src\PCCommunicationsArduino.cpp">
       <Filter>Communications\Platform Specific</Filter>
+    </ClCompile>
+    <ClCompile Include="src\controls\BindingManager.cpp">
+      <Filter>Controls</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
