@@ -43,11 +43,6 @@ namespace
 		int16_t textY = y + ( ( 32 - textHeight ) / 2 );
 		tft->setCursor( image.width + 3, textY );
 		tft->println( text );
-
-		Serial.print( "Printing " );
-		Serial.print( text );
-		Serial.print( " at y = " );
-		Serial.println( textY );
 	}
 
 	int16_t CalculateYOffset( int16_t index )

@@ -7,6 +7,7 @@
 #include "ScreenGeneral.h"
 #include "Database.h"
 #include "../PCCommunications.h"
+#include "../debug/Debug.h"
 
 #include <Arduino.h>
 
@@ -64,34 +65,29 @@ void Eliteduino::Display::Display::ProcessStatReport( const Message& message )
 	case StatType::Cmdr:
 		ProcessStringStat( data, m_database->Commander);
 
-		Serial.print( "Commander name received: " );
-		Serial.println( *m_database->Commander );
+		PRINT( "Commander name received: ", *m_database->Commander );
 		break;
 
 	case StatType::System:
 		ProcessStringStat( data, m_database->System );
 
-		Serial.print( "System received: " );
-		Serial.println( *m_database->System );
+		PRINT( "System received: ", *m_database->System );
 		break;
 
 	case StatType::Station:
 		ProcessStringStat( data, m_database->Station );
 
-		Serial.print( "Station received: " );
-		Serial.println( *m_database->Station );
+		PRINT( "Station received: ", *m_database->Station );
 		break;
 
 	case StatType::StationType:
 		m_database->StationType = static_cast<Eliteduino::Display::eStationType>( *data );
 
-		Serial.print( "Station type received: " );
-		Serial.println( *m_database->StationType );
+		PRINT( "Station type received: ", *m_database->StationType );
 		break;
 
 	default:
-		Serial.print( "Unrecognised stat type received: " );
-		Serial.println( (int)statType );
+		PRINT( "Unrecognised stat type received: ", (int)statType );
 	}
 }
 

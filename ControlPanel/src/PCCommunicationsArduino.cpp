@@ -7,7 +7,7 @@
 #include <Arduino.h>
 #include <HID-Project.h>
 #include <stdint.h>
-
+#include "debug/Debug.h"
 
 namespace
 {
@@ -31,7 +31,7 @@ namespace
 
 	void SendGamepadEvent( Eliteduino::eEventType eventType, uint8_t controlId )
 	{
-		Serial.println( "Sending gamepad event" );
+		PRINT( "Sending gamepad event (", (int)eventType, "/", controlId, ")" );
 
 		switch ( eventType )
 		{
