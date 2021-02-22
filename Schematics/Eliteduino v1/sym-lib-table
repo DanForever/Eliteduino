@@ -1,0 +1,4 @@
+(sym_lib_table
+  (lib (name eliteduino-eagle-import)(type Legacy)(uri ${KIPRJMOD}/eliteduino-eagle-import.lib)(options "")(descr ""))
+  (lib (name eliteduino-symbols)(type Legacy)(uri ${KIPRJMOD}/eliteduino-symbols.lib)(options "")(descr ""))
+)

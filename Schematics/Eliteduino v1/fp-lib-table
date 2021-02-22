@@ -1,0 +1,3 @@
+(fp_lib_table
+  (lib (name eliteduino)(type KiCad)(uri "$(KIPRJMOD)/eliteduino.pretty")(options "")(descr ""))
+)

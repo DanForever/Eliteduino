@@ -1,0 +1,755 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+Wire Wire Line
+	5400 2600 6600 2600
+Wire Wire Line
+	6600 2600 6600 1700
+Wire Wire Line
+	6600 1700 6900 1700
+Wire Wire Line
+	5400 2900 6800 2900
+Wire Wire Line
+	6800 2900 6800 2100
+Wire Wire Line
+	6800 2100 6900 2100
+Wire Wire Line
+	5400 2700 6700 2700
+Wire Wire Line
+	6700 2700 6700 1900
+Wire Wire Line
+	6700 1900 6900 1900
+Wire Wire Line
+	5400 1900 5600 1900
+Wire Wire Line
+	5600 1900 5600 3100
+Wire Wire Line
+	5600 3100 5600 3200
+Wire Wire Line
+	5600 3200 6900 3200
+Wire Wire Line
+	6900 3100 6100 3100
+Wire Wire Line
+	6100 3100 5800 3100
+Wire Wire Line
+	5800 3100 5600 3100
+Wire Wire Line
+	5800 2400 5800 3100
+Wire Wire Line
+	6100 2400 6100 3100
+Connection ~ 5600 3100
+Connection ~ 5800 3100
+Connection ~ 6100 3100
+Wire Wire Line
+	5400 1800 5400 1300
+Wire Wire Line
+	5400 1300 5800 1300
+Wire Wire Line
+	5800 1300 6100 1300
+Wire Wire Line
+	6100 1300 6400 1300
+Wire Wire Line
+	6400 1300 6500 1300
+Wire Wire Line
+	6500 1300 6500 3000
+Wire Wire Line
+	6500 3000 6900 3000
+Wire Wire Line
+	6400 1600 6400 1300
+Wire Wire Line
+	5800 2100 5800 1300
+Wire Wire Line
+	6100 2100 6100 1300
+Connection ~ 6400 1300
+Connection ~ 5800 1300
+Connection ~ 6100 1300
+Wire Wire Line
+	6400 2000 6400 2400
+Wire Wire Line
+	6400 2400 6900 2400
+$Comp
+L eliteduino-eagle-import:SPARKFUN_PRO_MICRO B1
+U 1 1 BA5909A3
+P 4900 2400
+F 0 "B1" H 4600 3130 59  0000 L BNN
+F 1 "SPARKFUN_PRO_MICRO" H 4600 1700 59  0000 L BNN
+F 2 "eliteduino:SPARKFUN_PRO_MICRO" H 4900 2400 50  0001 C CNN
+F 3 "" H 4900 2400 50  0001 C CNN
+	1    4900 2400
+	1    0    0    -1  
+$EndComp
+$Comp
+L eliteduino-eagle-import:R-EU_0204_7 R1
+U 1 1 F2AF4E1B
+P 6400 1800
+F 0 "R1" H 6250 1859 59  0000 L BNN
+F 1 "10kOhms" H 6250 1670 59  0000 L BNN
+F 2 "eliteduino:0204_7" H 6400 1800 50  0001 C CNN
+F 3 "" H 6400 1800 50  0001 C CNN
+	1    6400 1800
+	0    -1   -1   0   
+$EndComp
+$Comp
+L eliteduino-eagle-import:CPOL-EUE2-5 C1
+U 1 1 3C337A71
+P 5800 2200
+F 0 "C1" H 5845 2219 59  0000 L BNN
+F 1 "10uf" H 5845 2019 59  0000 L BNN
+F 2 "eliteduino:E2-5" H 5800 2200 50  0001 C CNN
+F 3 "" H 5800 2200 50  0001 C CNN
+	1    5800 2200
+	1    0    0    -1  
+$EndComp
+$Comp
+L eliteduino-eagle-import:C-EU025-024X044 C2
+U 1 1 65EC1BA2
+P 6100 2200
+F 0 "C2" H 6160 2215 59  0000 L BNN
+F 1 "100n" H 6160 2015 59  0000 L BNN
+F 2 "eliteduino:C025-024X044" H 6100 2200 50  0001 C CNN
+F 3 "" H 6100 2200 50  0001 C CNN
+	1    6100 2200
+	1    0    0    -1  
+$EndComp
+Text GLabel 5400 2100 0    10   BiDi ~ 0
+VCC
+Text GLabel 4500 2000 0    10   BiDi ~ 0
+GND
+$Comp
+L eliteduino-eagle-import:MAX7219CNG IC1
+U 1 1 BC34DC86
+P 7500 2400
+F 0 "IC1" H 7100 3225 59  0000 L BNN
+F 1 "MAX7219CNG" H 7100 1400 59  0000 L BNN
+F 2 "eliteduino:DIL24-3" H 7500 2400 50  0001 C CNN
+F 3 "" H 7500 2400 50  0001 C CNN
+	1    7500 2400
+	1    0    0    -1  
+$EndComp
+$Comp
+L eliteduino-symbols:SW_Connector SW1
+U 1 1 601F31F1
+P 3850 4300
+F 0 "SW1" V 3958 4056 50  0000 R CNN
+F 1 "SW_Connector" H 3850 4000 50  0001 C CNN
+F 2 "Connector_JST:JST_EH_B4B-EH-A_1x04_P2.50mm_Vertical" H 3800 3900 50  0001 C CNN
+F 3 "~" H 3850 4300 50  0001 C CNN
+	1    3850 4300
+	0    -1   -1   0   
+$EndComp
+$Comp
+L eliteduino-symbols:SW_Connector SW2
+U 1 1 601F8BFC
+P 3850 4850
+F 0 "SW2" V 3958 4606 50  0000 R CNN
+F 1 "SW_Connector" H 3850 4550 50  0001 C CNN
+F 2 "Connector_JST:JST_EH_B4B-EH-A_1x04_P2.50mm_Vertical" H 3800 4450 50  0001 C CNN
+F 3 "~" H 3850 4850 50  0001 C CNN
+	1    3850 4850
+	0    -1   -1   0   
+$EndComp
+$Comp
+L eliteduino-symbols:SW_Connector SW5
+U 1 1 601FF6D1
+P 4850 4300
+F 0 "SW5" V 4958 4056 50  0000 R CNN
+F 1 "SW_Connector" H 4850 4000 50  0001 C CNN
+F 2 "Connector_JST:JST_EH_B4B-EH-A_1x04_P2.50mm_Vertical" H 4800 3900 50  0001 C CNN
+F 3 "~" H 4850 4300 50  0001 C CNN
+	1    4850 4300
+	0    -1   -1   0   
+$EndComp
+$Comp
+L eliteduino-symbols:SW_Connector SW6
+U 1 1 601FF6D7
+P 4850 4850
+F 0 "SW6" V 4958 4606 50  0000 R CNN
+F 1 "SW_Connector" H 4850 4550 50  0001 C CNN
+F 2 "Connector_JST:JST_EH_B4B-EH-A_1x04_P2.50mm_Vertical" H 4800 4450 50  0001 C CNN
+F 3 "~" H 4850 4850 50  0001 C CNN
+	1    4850 4850
+	0    -1   -1   0   
+$EndComp
+$Comp
+L eliteduino-symbols:SW_Connector SW9
+U 1 1 60202C9C
+P 5750 4300
+F 0 "SW9" V 5858 4056 50  0000 R CNN
+F 1 "SW_Connector" H 5750 4000 50  0001 C CNN
+F 2 "Connector_JST:JST_EH_B4B-EH-A_1x04_P2.50mm_Vertical" H 5700 3900 50  0001 C CNN
+F 3 "~" H 5750 4300 50  0001 C CNN
+	1    5750 4300
+	0    -1   -1   0   
+$EndComp
+$Comp
+L eliteduino-symbols:SW_Connector SW10
+U 1 1 60202CA2
+P 5750 4850
+F 0 "SW10" V 5858 4606 50  0000 R CNN
+F 1 "SW_Connector" H 5750 4550 50  0001 C CNN
+F 2 "Connector_JST:JST_EH_B4B-EH-A_1x04_P2.50mm_Vertical" H 5700 4450 50  0001 C CNN
+F 3 "~" H 5750 4850 50  0001 C CNN
+	1    5750 4850
+	0    -1   -1   0   
+$EndComp
+$Comp
+L eliteduino-symbols:SW_Connector SW13
+U 1 1 602044B7
+P 6650 4300
+F 0 "SW13" V 6758 4056 50  0000 R CNN
+F 1 "SW_Connector" H 6650 4000 50  0001 C CNN
+F 2 "Connector_JST:JST_EH_B4B-EH-A_1x04_P2.50mm_Vertical" H 6600 3900 50  0001 C CNN
+F 3 "~" H 6650 4300 50  0001 C CNN
+	1    6650 4300
+	0    -1   -1   0   
+$EndComp
+$Comp
+L eliteduino-symbols:SW_Connector SW14
+U 1 1 602044BD
+P 6650 4850
+F 0 "SW14" V 6758 4606 50  0000 R CNN
+F 1 "SW_Connector" H 6650 4550 50  0001 C CNN
+F 2 "Connector_JST:JST_EH_B4B-EH-A_1x04_P2.50mm_Vertical" H 6600 4450 50  0001 C CNN
+F 3 "~" H 6650 4850 50  0001 C CNN
+	1    6650 4850
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	8350 1700 8000 1700
+Wire Wire Line
+	4750 4100 4650 4100
+Wire Wire Line
+	4200 4000 4050 4000
+Wire Wire Line
+	4050 4000 4050 4100
+Wire Wire Line
+	4200 4550 4050 4550
+Wire Wire Line
+	4050 4550 4050 4650
+Wire Wire Line
+	5200 4550 5050 4550
+Wire Wire Line
+	5050 4550 5050 4650
+Wire Wire Line
+	5200 4000 5050 4000
+Wire Wire Line
+	5050 4000 5050 4100
+Wire Wire Line
+	6100 4550 5950 4550
+Wire Wire Line
+	5950 4550 5950 4650
+Wire Wire Line
+	6100 4000 5950 4000
+Wire Wire Line
+	5950 4000 5950 4100
+Wire Wire Line
+	7000 4000 6850 4000
+Wire Wire Line
+	6850 4000 6850 4100
+Wire Wire Line
+	7000 4550 6850 4550
+Wire Wire Line
+	6850 4550 6850 4650
+Wire Wire Line
+	6750 3900 6750 4100
+Wire Wire Line
+	4950 4100 4950 3900
+Wire Wire Line
+	3950 3900 3950 4100
+Wire Wire Line
+	5850 4450 5850 4650
+Wire Wire Line
+	6750 4650 6750 4450
+Wire Wire Line
+	4950 4450 4950 4650
+Wire Wire Line
+	3950 4450 3950 4650
+Wire Wire Line
+	6850 5600 6850 5700
+Wire Wire Line
+	7000 5600 6850 5600
+Wire Wire Line
+	6850 5050 6850 5150
+Wire Wire Line
+	7000 5050 6850 5050
+Wire Wire Line
+	5950 5600 5950 5700
+Wire Wire Line
+	6100 5600 5950 5600
+Wire Wire Line
+	5950 5050 5950 5150
+Wire Wire Line
+	6100 5050 5950 5050
+Wire Wire Line
+	5050 5050 5050 5150
+Wire Wire Line
+	5200 5050 5050 5050
+Wire Wire Line
+	5050 5600 5050 5700
+Wire Wire Line
+	5200 5600 5050 5600
+Wire Wire Line
+	4050 5600 4050 5700
+Wire Wire Line
+	4200 5600 4050 5600
+Wire Wire Line
+	4050 5050 4050 5150
+Wire Wire Line
+	4200 5050 4050 5050
+Wire Wire Line
+	4650 5150 4750 5150
+Wire Wire Line
+	3750 5700 3750 5650
+$Comp
+L eliteduino-symbols:SW_Connector SW16
+U 1 1 602044C9
+P 6650 5900
+F 0 "SW16" V 6758 5656 50  0000 R CNN
+F 1 "SW_Connector" H 6650 5600 50  0001 C CNN
+F 2 "Connector_JST:JST_EH_B4B-EH-A_1x04_P2.50mm_Vertical" H 6600 5500 50  0001 C CNN
+F 3 "~" H 6650 5900 50  0001 C CNN
+	1    6650 5900
+	0    -1   -1   0   
+$EndComp
+$Comp
+L eliteduino-symbols:SW_Connector SW15
+U 1 1 602044C3
+P 6650 5350
+F 0 "SW15" V 6758 5106 50  0000 R CNN
+F 1 "SW_Connector" H 6650 5050 50  0001 C CNN
+F 2 "Connector_JST:JST_EH_B4B-EH-A_1x04_P2.50mm_Vertical" H 6600 4950 50  0001 C CNN
+F 3 "~" H 6650 5350 50  0001 C CNN
+	1    6650 5350
+	0    -1   -1   0   
+$EndComp
+$Comp
+L eliteduino-symbols:SW_Connector SW12
+U 1 1 60202CAE
+P 5750 5900
+F 0 "SW12" V 5858 5656 50  0000 R CNN
+F 1 "SW_Connector" H 5750 5600 50  0001 C CNN
+F 2 "Connector_JST:JST_EH_B4B-EH-A_1x04_P2.50mm_Vertical" H 5700 5500 50  0001 C CNN
+F 3 "~" H 5750 5900 50  0001 C CNN
+	1    5750 5900
+	0    -1   -1   0   
+$EndComp
+$Comp
+L eliteduino-symbols:SW_Connector SW11
+U 1 1 60202CA8
+P 5750 5350
+F 0 "SW11" V 5858 5106 50  0000 R CNN
+F 1 "SW_Connector" H 5750 5050 50  0001 C CNN
+F 2 "Connector_JST:JST_EH_B4B-EH-A_1x04_P2.50mm_Vertical" H 5700 4950 50  0001 C CNN
+F 3 "~" H 5750 5350 50  0001 C CNN
+	1    5750 5350
+	0    -1   -1   0   
+$EndComp
+$Comp
+L eliteduino-symbols:SW_Connector SW8
+U 1 1 601FF6E3
+P 4850 5900
+F 0 "SW8" V 4958 5656 50  0000 R CNN
+F 1 "SW_Connector" H 4850 5600 50  0001 C CNN
+F 2 "Connector_JST:JST_EH_B4B-EH-A_1x04_P2.50mm_Vertical" H 4800 5500 50  0001 C CNN
+F 3 "~" H 4850 5900 50  0001 C CNN
+	1    4850 5900
+	0    -1   -1   0   
+$EndComp
+$Comp
+L eliteduino-symbols:SW_Connector SW7
+U 1 1 601FF6DD
+P 4850 5350
+F 0 "SW7" V 4958 5106 50  0000 R CNN
+F 1 "SW_Connector" H 4850 5050 50  0001 C CNN
+F 2 "Connector_JST:JST_EH_B4B-EH-A_1x04_P2.50mm_Vertical" H 4800 4950 50  0001 C CNN
+F 3 "~" H 4850 5350 50  0001 C CNN
+	1    4850 5350
+	0    -1   -1   0   
+$EndComp
+$Comp
+L eliteduino-symbols:SW_Connector SW4
+U 1 1 601FCA3D
+P 3850 5900
+F 0 "SW4" V 3958 5656 50  0000 R CNN
+F 1 "SW_Connector" H 3850 5600 50  0001 C CNN
+F 2 "Connector_JST:JST_EH_B4B-EH-A_1x04_P2.50mm_Vertical" H 3800 5500 50  0001 C CNN
+F 3 "~" H 3850 5900 50  0001 C CNN
+	1    3850 5900
+	0    -1   -1   0   
+$EndComp
+$Comp
+L eliteduino-symbols:SW_Connector SW3
+U 1 1 601FCA37
+P 3850 5350
+F 0 "SW3" V 3958 5106 50  0000 R CNN
+F 1 "SW_Connector" H 3850 5050 50  0001 C CNN
+F 2 "Connector_JST:JST_EH_B4B-EH-A_1x04_P2.50mm_Vertical" H 3800 4950 50  0001 C CNN
+F 3 "~" H 3850 5350 50  0001 C CNN
+	1    3850 5350
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	4950 4950 4950 5150
+Wire Wire Line
+	3950 5150 3950 4950
+Wire Wire Line
+	6750 5500 6750 5700
+Wire Wire Line
+	5850 5500 5850 5700
+Wire Wire Line
+	4950 5500 4950 5700
+Wire Wire Line
+	3950 5500 3950 5700
+Wire Wire Line
+	6750 5150 6750 4950
+NoConn ~ 4500 1800
+NoConn ~ 4500 1900
+NoConn ~ 4500 2000
+NoConn ~ 4500 2100
+NoConn ~ 5400 2000
+NoConn ~ 5400 2100
+NoConn ~ 5400 2200
+NoConn ~ 5400 2300
+NoConn ~ 5400 2400
+NoConn ~ 5400 2500
+NoConn ~ 5400 2800
+Wire Wire Line
+	4200 4550 4200 5050
+Wire Wire Line
+	4200 4000 4200 4550
+Wire Wire Line
+	4200 5050 4200 5600
+Connection ~ 4200 4550
+Connection ~ 4200 5050
+Wire Wire Line
+	4500 2300 4150 2300
+Wire Wire Line
+	4150 2300 4150 3600
+Wire Wire Line
+	4150 3600 5200 3600
+Wire Wire Line
+	5200 3600 5200 4000
+Wire Wire Line
+	5200 4550 5200 5050
+Wire Wire Line
+	5200 5050 5200 5600
+Connection ~ 5200 5050
+Wire Wire Line
+	4500 2400 4250 2400
+Wire Wire Line
+	4250 3500 6100 3500
+Wire Wire Line
+	6100 3500 6100 4000
+Connection ~ 6100 4000
+Wire Wire Line
+	6100 4000 6100 4550
+Connection ~ 6100 4550
+Wire Wire Line
+	6100 4550 6100 5050
+Connection ~ 6100 5050
+Wire Wire Line
+	6100 5050 6100 5600
+Wire Wire Line
+	4200 4000 4200 3700
+Wire Wire Line
+	4200 3700 4050 3700
+Wire Wire Line
+	4050 3700 4050 2200
+Wire Wire Line
+	4050 2200 4500 2200
+Connection ~ 4200 4000
+Wire Wire Line
+	4500 2500 4350 2500
+Wire Wire Line
+	4350 3400 7000 3400
+Wire Wire Line
+	7000 3400 7000 4000
+Connection ~ 7000 4000
+Wire Wire Line
+	7000 4000 7000 4550
+Connection ~ 7000 4550
+Wire Wire Line
+	7000 4550 7000 5050
+Connection ~ 7000 5050
+Wire Wire Line
+	7000 5050 7000 5600
+Wire Wire Line
+	4350 2500 4350 3400
+Wire Wire Line
+	4250 2400 4250 3500
+Wire Wire Line
+	4500 2600 3550 2600
+Wire Wire Line
+	3550 2600 3550 3900
+Wire Wire Line
+	3550 3900 3950 3900
+Connection ~ 3950 3900
+Wire Wire Line
+	3950 3900 4950 3900
+Connection ~ 4950 3900
+Wire Wire Line
+	4500 2700 3450 2700
+Wire Wire Line
+	3450 2700 3450 4450
+Wire Wire Line
+	3450 4450 3950 4450
+Connection ~ 3950 4450
+Wire Wire Line
+	3950 4450 4950 4450
+Connection ~ 4950 4450
+Wire Wire Line
+	4950 4450 5850 4450
+Connection ~ 5850 4450
+Wire Wire Line
+	5850 4450 6750 4450
+Wire Wire Line
+	4500 2800 3350 2800
+Wire Wire Line
+	3350 2800 3350 4950
+Wire Wire Line
+	3350 4950 3950 4950
+Connection ~ 3950 4950
+Wire Wire Line
+	3950 4950 4950 4950
+Connection ~ 4950 4950
+Wire Wire Line
+	4950 4950 5850 4950
+Wire Wire Line
+	5850 5150 5850 4950
+Connection ~ 5850 4950
+Wire Wire Line
+	5850 4950 6750 4950
+Wire Wire Line
+	4500 2900 3250 2900
+Wire Wire Line
+	3250 2900 3250 5500
+Wire Wire Line
+	3250 5500 3950 5500
+Connection ~ 3950 5500
+Wire Wire Line
+	3950 5500 4950 5500
+Connection ~ 4950 5500
+Wire Wire Line
+	4950 5500 5850 5500
+Connection ~ 5850 5500
+Wire Wire Line
+	5850 5500 6750 5500
+Wire Wire Line
+	4950 3900 5850 3900
+Wire Wire Line
+	8350 1700 8350 3950
+Wire Wire Line
+	8350 3950 6650 3950
+Wire Wire Line
+	4850 3950 4850 4100
+Connection ~ 4850 3950
+Wire Wire Line
+	4850 3950 3850 3950
+Wire Wire Line
+	5750 3950 5750 4100
+Connection ~ 5750 3950
+Wire Wire Line
+	5750 3950 4850 3950
+Wire Wire Line
+	6650 3950 6650 4100
+Connection ~ 6650 3950
+Wire Wire Line
+	6650 3950 5750 3950
+Wire Wire Line
+	8000 1800 8450 1800
+Wire Wire Line
+	8450 1800 8450 4500
+Wire Wire Line
+	8450 4500 6650 4500
+Wire Wire Line
+	3850 4500 3850 4650
+Wire Wire Line
+	4850 4500 4850 4650
+Connection ~ 4850 4500
+Wire Wire Line
+	4850 4500 3850 4500
+Wire Wire Line
+	5750 4500 5750 4650
+Connection ~ 5750 4500
+Wire Wire Line
+	5750 4500 4850 4500
+Wire Wire Line
+	6650 4500 6650 4650
+Connection ~ 6650 4500
+Wire Wire Line
+	6650 4500 5750 4500
+Wire Wire Line
+	8000 1900 8550 1900
+Wire Wire Line
+	8550 1900 8550 5000
+Wire Wire Line
+	8550 5000 6650 5000
+Wire Wire Line
+	3850 5000 3850 5150
+Wire Wire Line
+	4850 5000 4850 5150
+Connection ~ 4850 5000
+Wire Wire Line
+	4850 5000 3850 5000
+Wire Wire Line
+	5750 5000 5750 5150
+Connection ~ 5750 5000
+Wire Wire Line
+	5750 5000 4850 5000
+Wire Wire Line
+	6650 5000 6650 5150
+Connection ~ 6650 5000
+Wire Wire Line
+	6650 5000 5750 5000
+Wire Wire Line
+	8000 2000 8650 2000
+Wire Wire Line
+	8650 2000 8650 5550
+Wire Wire Line
+	8650 5550 6650 5550
+Wire Wire Line
+	3850 5550 3850 5700
+Wire Wire Line
+	4850 5550 4850 5700
+Connection ~ 4850 5550
+Wire Wire Line
+	4850 5550 3850 5550
+Wire Wire Line
+	5750 5700 5750 5550
+Connection ~ 5750 5550
+Wire Wire Line
+	5750 5550 4850 5550
+Wire Wire Line
+	6650 5700 6650 5550
+Connection ~ 6650 5550
+Wire Wire Line
+	6650 5550 5750 5550
+Wire Wire Line
+	5200 4550 5200 4000
+Connection ~ 5200 4550
+Connection ~ 5200 4000
+Wire Wire Line
+	8000 2700 8750 2700
+Wire Wire Line
+	8750 2700 8750 5950
+Wire Wire Line
+	8750 5950 6450 5950
+Wire Wire Line
+	6450 5950 6450 5700
+Wire Wire Line
+	6450 4100 6550 4100
+Wire Wire Line
+	6550 4650 6450 4650
+Connection ~ 6450 4650
+Wire Wire Line
+	6450 4650 6450 4100
+Wire Wire Line
+	6550 5150 6450 5150
+Connection ~ 6450 5150
+Wire Wire Line
+	6450 5150 6450 4650
+Wire Wire Line
+	6550 5700 6450 5700
+Connection ~ 6450 5700
+Wire Wire Line
+	6450 5700 6450 5150
+Wire Wire Line
+	8000 2600 8850 2600
+Wire Wire Line
+	8850 2600 8850 6050
+Wire Wire Line
+	8850 6050 5550 6050
+Wire Wire Line
+	5550 6050 5550 5700
+Wire Wire Line
+	5550 4100 5650 4100
+Wire Wire Line
+	5650 4650 5550 4650
+Connection ~ 5550 4650
+Wire Wire Line
+	5550 4650 5550 4100
+Wire Wire Line
+	5550 5700 5650 5700
+Connection ~ 5550 5700
+Wire Wire Line
+	5550 5700 5550 5150
+Wire Wire Line
+	5550 5150 5650 5150
+Connection ~ 5550 5150
+Wire Wire Line
+	5550 5150 5550 4650
+Wire Wire Line
+	8000 2500 8950 2500
+Wire Wire Line
+	8950 2500 8950 6150
+Wire Wire Line
+	8950 6150 4650 6150
+Wire Wire Line
+	4650 6150 4650 5700
+Connection ~ 4650 5150
+Wire Wire Line
+	4650 5150 4650 4650
+Wire Wire Line
+	4750 4650 4650 4650
+Connection ~ 4650 4650
+Wire Wire Line
+	4650 4650 4650 4100
+Wire Wire Line
+	4750 5700 4650 5700
+Connection ~ 4650 5700
+Wire Wire Line
+	4650 5700 4650 5150
+Wire Wire Line
+	8000 3200 9050 3200
+Wire Wire Line
+	9050 3200 9050 6250
+Wire Wire Line
+	9050 6250 3650 6250
+Wire Wire Line
+	3650 6250 3650 5650
+Wire Wire Line
+	3650 4100 3750 4100
+Wire Wire Line
+	3750 4650 3650 4650
+Connection ~ 3650 4650
+Wire Wire Line
+	3650 4650 3650 4100
+Wire Wire Line
+	3750 5150 3650 5150
+Connection ~ 3650 5150
+Wire Wire Line
+	3650 5150 3650 4650
+Wire Wire Line
+	3750 5650 3650 5650
+Connection ~ 3650 5650
+Wire Wire Line
+	3650 5650 3650 5150
+NoConn ~ 8000 2100
+NoConn ~ 8000 2200
+NoConn ~ 8000 2300
+NoConn ~ 8000 2400
+NoConn ~ 8000 2800
+NoConn ~ 8000 2900
+NoConn ~ 8000 3000
+NoConn ~ 8000 3100
+NoConn ~ 6900 2200
+Wire Wire Line
+	5850 4100 5850 3900
+Connection ~ 5850 3900
+Wire Wire Line
+	5850 3900 6750 3900
+Wire Wire Line
+	3850 3950 3850 4100
+$EndSCHEMATC
