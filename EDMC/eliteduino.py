@@ -1,46 +1,5 @@
 from pyhid import pyhid
-from enum import IntEnum, auto
-
-class UnsupportedDataType(Exception):
-    pass
-
-HID_BUFFER_SIZE = 64
-
-REPORT_ID_BYTE_POSITION = 1
-STAT_TYPE_BYTE_POSITION = 2
-STAT_DATA_POSITION = 3
-
-class ReportType(IntEnum):
-    DATA = 1
-    CONTROLS_REBIND = 2
-
-class StatType(IntEnum):
-    CMDR_NAME = 1
-    SYSTEM = auto()
-    STATION = auto()
-    STATION_TYPE = auto()
-
-class StationType(IntEnum):
-    UNKNOWN_STATION_TYPE = -1
-    CORIOLIS = 1
-    OCELLUS = auto()
-    ORBIS = auto()
-    OUTPOST = auto()
-    MEGA_SHIP = auto()
-    ASTEROID = auto()
-    SURFACE_PORT = auto()
-    COUNT = auto()
-
-StationTypeMap = \
-{
-    "Coriolis" : StationType.CORIOLIS,
-    "Ocellus" : StationType.OCELLUS,
-    "Orbis" : StationType.ORBIS,
-    "Outpost" : StationType.OUTPOST,
-    "FleetCarrier" : StationType.MEGA_SHIP,
-    "AsteroidStation" : StationType.ASTEROID,
-    "CraterOutpost" : StationType.SURFACE_PORT
-}
+from defines import *
 
 class StatBuffer(pyhid.Buffer):
     def __init__(self):
@@ -96,6 +55,8 @@ class StatBuffer(pyhid.Buffer):
             self._set_string_data(value)
         elif(isinstance(value, int)):
             self._set_int_data(value)
+        elif(isinstance(value, bool)):
+            self._set_int_data(int(value))
         else:
             raise UnsupportedDataType("Unsupported data type: {type(value)} ({value})")
             
@@ -202,11 +163,8 @@ class Eliteduino():
             "Startup" : lambda entry: updater(entry.get('StationName', ''), StationTypeMap.get(entry.get("StationType"), StationType.UNKNOWN_STATION_TYPE)),
         }
         
-    def update_vicinity(self, data):
-        
-        entry = data["entry"]
-        
-        updater = self.vicinity_map.get(entry["event"])
+    def update_vicinity(self, journal_entry):
+        updater = self.vicinity_map.get(journal_entry["event"])
         
         if(updater is not None):
             updater(entry)
