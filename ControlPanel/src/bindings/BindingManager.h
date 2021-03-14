@@ -1,9 +1,9 @@
-#ifndef __ELITEDUINO_BINDING_MANAGER_H__
-#define __ELITEDUINO_BINDING_MANAGER_H__
+#ifndef __ELITEDUINO_BINDINGS_MANAGER_H__
+#define __ELITEDUINO_BINDINGS_MANAGER_H__
 
 namespace Eliteduino
 {
-	namespace Controls
+	namespace Bindings
 	{
 		union Binding;
 
@@ -15,6 +15,7 @@ namespace Eliteduino
 			bool AreStoredBindingsValid() const;
 
 			const Binding* GetBinding( uint8_t buttonIndex ) const;
+			uint8_t GetBindingCount() const { return m_bindingCount; }
 
 		private:
 			uint32_t CalculateCRC() const;
@@ -24,9 +25,9 @@ namespace Eliteduino
 			void LoadBindings();
 
 			Binding* m_bindings;
-			uint8_t m_buttonCount = 0;
+			uint8_t m_bindingCount = 0;
 		};
 	}
 }
 
-#endif // __ELITEDUINO_BINDING_MANAGER_H__
+#endif // __ELITEDUINO_BINDINGS_MANAGER_H__

@@ -28,6 +28,22 @@ namespace Eliteduino
 		Press,
 		Release
 	};
+
+	enum class eControlRole : uint8_t
+	{
+		Undefined,
+		LandingGear,
+		CargoScoop,
+		Lights,
+		SilentRunning,
+		FlightAssist,
+		RotationalAssist,
+		GalaxyMap,
+		SystemMap,
+		FrameshiftJump,
+		Supercruise,
+		Heatsink,
+	};
 }
 
 #endif // __ELITEDUINO_PC_COMMUNICATIONS_DEFINES_H__

@@ -8,10 +8,13 @@ namespace Eliteduino
 {
 	class PCCommunications;
 
-	namespace Controls
+	namespace Bindings
 	{
 		union Binding;
+	}
 
+	namespace Controls
+	{
 		class Button
 		{
 		public:
@@ -20,7 +23,7 @@ namespace Eliteduino
 
 			void Initialize( uint8_t pin, uint8_t pressedState, PCCommunications* comms );
 			void SetDebounceInterval( int miliseconds );
-			void SetBinding( const Binding* binding ) { m_binding = binding; }
+			void SetBinding( const Bindings::Binding* binding ) { m_binding = binding; }
 			void SetNormallyOpen( bool isOpen );
 
 			void Update();
@@ -30,7 +33,7 @@ namespace Eliteduino
 		private:
 			Bounce2::Button m_button;
 			PCCommunications* m_comms = nullptr;
-			const Binding* m_binding = nullptr;
+			const Bindings::Binding* m_binding = nullptr;
 		};
 	}
 }

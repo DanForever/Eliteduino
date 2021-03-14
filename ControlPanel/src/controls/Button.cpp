@@ -4,7 +4,7 @@
 
 #include "Button.h"
 
-#include "Binding.h"
+#include "../bindings/Binding.h"
 #include "../debug/Debug.h"
 #include "../PCCommunications.h"
 #include "../PCCommunicationsDefines.h"

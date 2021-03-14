@@ -10,7 +10,7 @@ constexpr int ArraySize( T( & )[ N ] ) { return N; }
 
 // Temporary until proper device configurations are figured out and defined
 //#define ELITEDUINO_DEVICE_TEENSY_BUTTONSANDSCREEN
-//#define ELITEDUINO_DEVICE_PROMICRO_16BUTTONSONLY
+#define ELITEDUINO_DEVICE_PROMICRO_16BUTTONSONLY
 
 //------------------------------------------------------------------------------------------------
 
@@ -21,6 +21,12 @@ const uint8_t BUTTON_ROWS[] = { 6, 7, 8, 9 };
 const uint8_t BUTTON_COLUMN_COUNT = ArraySize( BUTTON_COLUMNS );
 const uint8_t BUTTON_ROW_COUNT = ArraySize( BUTTON_ROWS );
 const uint8_t DEBOUNCE_INTERVAL = 25;
+
+const uint8_t LED_CONTROLLER_PIN_DIN = 10;
+const uint8_t LED_CONTROLLER_PIN_CLK = 15;
+const uint8_t LED_CONTROLLER_PIN_CS = 14;
+const uint8_t LED_CONTROLLER_COLUMN_COUNT = ArraySize( BUTTON_COLUMNS );
+const uint8_t LED_CONTROLLER_ROW_COUNT = ArraySize( BUTTON_ROWS );
 
 #endif // ELITEDUINO_DEVICE_PROMICRO_16BUTTONSONLY
 

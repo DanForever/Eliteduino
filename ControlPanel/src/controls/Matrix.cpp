@@ -8,6 +8,7 @@
 #include "Utility.h"
 
 #include <Arduino.h>
+#include "..\leds\Matrix.h"
 
 inline void Eliteduino::Controls::Matrix::ActivateColumn( uint8_t column )
 {
@@ -65,13 +66,13 @@ void Eliteduino::Controls::Matrix::SetNormallyOpen( uint8_t row, uint8_t column,
 	SetNormallyOpen( index, isOpen );
 }
 
-void Eliteduino::Controls::Matrix::SetBinding( uint8_t index, const Binding* binding )
+void Eliteduino::Controls::Matrix::SetBinding( uint8_t index, const Bindings::Binding* binding )
 {
 	Button& button = m_buttons[ index ];
 	button.SetBinding( binding );
 }
 
-void Eliteduino::Controls::Matrix::SetBinding( uint8_t row, uint8_t column, const Binding* binding )
+void Eliteduino::Controls::Matrix::SetBinding( uint8_t row, uint8_t column, const Bindings::Binding* binding )
 {
 	const uint8_t index = ButtonIndex( row, column, m_rowCount );
 	SetBinding( index, binding );
@@ -87,21 +88,6 @@ void Eliteduino::Controls::Matrix::Update()
 		{
 			const uint8_t index = ButtonIndex( row, column, m_rowCount );
 			Button& button = m_buttons[ index ];
-
-//			Serial.print( "Row: " );
-//			Serial.print( row );
-//
-//			Serial.print( " / Col: " );
-//			Serial.print( column );
-//
-//			Serial.print( " / Idx: " );
-//			Serial.println( index );
-
-//			if ( row == 0 && column == 0 )
-//			{
-//				Serial.print( "Button 0 state: " );
-//				Serial.println( button.Raw() );
-//			}
 
 			button.Update();
 		}

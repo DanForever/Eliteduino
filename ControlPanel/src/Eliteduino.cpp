@@ -5,27 +5,47 @@
 #ifdef ELITEDUINO_BUTTONS
 
 #include "controls/Matrix.h"
-#include "controls/BindingManager.h"
+#include "bindings/BindingManager.h"
+#include "leds/Controller.h"
+#include "debug/Debug.h"
 
-Eliteduino::Controls::Matrix gMatrix;
-Eliteduino::Controls::BindingsManager gBindingsManager;
+Eliteduino::Controls::Matrix gButtonMatrix;
+Eliteduino::Leds::Controller gLedController;
+Eliteduino::Bindings::BindingsManager gBindingsManager;
 
 void Eliteduino::SetupButtons( PCCommunications* comms )
 {
-	gMatrix.Initialize( BUTTON_ROWS, BUTTON_COLUMNS, BUTTON_ROW_COUNT, BUTTON_COLUMN_COUNT, DEBOUNCE_INTERVAL, comms );
 	gBindingsManager.Initialize( BUTTON_ROW_COUNT, BUTTON_COLUMN_COUNT );
 
-	const uint8_t buttonCount = BUTTON_ROW_COUNT * BUTTON_COLUMN_COUNT;
-	for ( uint8_t i = 0; i < buttonCount; ++i )
+	Eliteduino::Leds::LedMatrixConfig ledMatrixConfig =
+	{
+		{
+			LED_CONTROLLER_PIN_DIN,
+			LED_CONTROLLER_PIN_CLK,
+			LED_CONTROLLER_PIN_CS
+		},
+		{
+			LED_CONTROLLER_ROW_COUNT,
+			LED_CONTROLLER_COLUMN_COUNT
+		}
+	};
+
+	gButtonMatrix.Initialize( BUTTON_ROWS, BUTTON_COLUMNS, BUTTON_ROW_COUNT, BUTTON_COLUMN_COUNT, DEBOUNCE_INTERVAL, comms );
+
+	gLedController.Initialize( ledMatrixConfig, comms );
+
+	for ( uint8_t i = 0; i < gBindingsManager.GetBindingCount(); ++i )
 	{
 		const auto* binding = gBindingsManager.GetBinding( i );
-		gMatrix.SetBinding( i, binding );
+		gButtonMatrix.SetBinding( i, binding );
+		gLedController.SetBinding( i, binding );
 	}
 }
 
 void Eliteduino::UpdateButtons()
 {
-	gMatrix.Update();
+	gButtonMatrix.Update();
+	gLedController.Update();
 }
 
 #endif // ELITEDUINO_BUTTONS

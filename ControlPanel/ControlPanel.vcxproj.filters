@@ -22,6 +22,12 @@
     <Filter Include="Debug">
       <UniqueIdentifier>{e53faa69-7afa-4c0a-af50-91c14f569291}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Leds">
+      <UniqueIdentifier>{c56c7632-b2c7-4b67-88de-5534c279cb61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Bindings">
+      <UniqueIdentifier>{132624be-6808-4f68-9450-fd0952f6bb2f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ControlPanel.ino" />
@@ -72,17 +78,23 @@
     <ClInclude Include="src\PCCommunicationsDefines.h">
       <Filter>Communications</Filter>
     </ClInclude>
-    <ClInclude Include="src\controls\Binding.h">
-      <Filter>Controls</Filter>
-    </ClInclude>
-    <ClInclude Include="src\controls\BindingManager.h">
-      <Filter>Controls</Filter>
-    </ClInclude>
     <ClInclude Include="src\debug\Debug.h">
       <Filter>Debug</Filter>
     </ClInclude>
     <ClInclude Include="src\controls\Utility.h">
       <Filter>Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="src\leds\Matrix.h">
+      <Filter>Leds</Filter>
+    </ClInclude>
+    <ClInclude Include="src\bindings\Binding.h">
+      <Filter>Bindings</Filter>
+    </ClInclude>
+    <ClInclude Include="src\bindings\BindingManager.h">
+      <Filter>Bindings</Filter>
+    </ClInclude>
+    <ClInclude Include="src\leds\Controller.h">
+      <Filter>Leds</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -139,8 +151,14 @@
     <ClCompile Include="src\PCCommunicationsArduino.cpp">
       <Filter>Communications\Platform Specific</Filter>
     </ClCompile>
-    <ClCompile Include="src\controls\BindingManager.cpp">
-      <Filter>Controls</Filter>
+    <ClCompile Include="src\leds\Matrix.cpp">
+      <Filter>Leds</Filter>
+    </ClCompile>
+    <ClCompile Include="src\bindings\BindingManager.cpp">
+      <Filter>Bindings</Filter>
+    </ClCompile>
+    <ClCompile Include="src\leds\Controller.cpp">
+      <Filter>Leds</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

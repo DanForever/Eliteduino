@@ -120,9 +120,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Architecture.h" />
+    <ClInclude Include="src\bindings\Binding.h" />
+    <ClInclude Include="src\bindings\BindingManager.h" />
     <ClInclude Include="src\Containers.h" />
-    <ClInclude Include="src\controls\Binding.h" />
-    <ClInclude Include="src\controls\BindingManager.h" />
     <ClInclude Include="src\controls\Button.h" />
     <ClInclude Include="src\controls\Matrix.h" />
     <ClInclude Include="src\controls\Utility.h" />
@@ -135,6 +135,8 @@
     <ClInclude Include="src\display\ScreenGeneral.h" />
     <ClInclude Include="src\Eliteduino.h" />
     <ClInclude Include="src\Event.h" />
+    <ClInclude Include="src\leds\Controller.h" />
+    <ClInclude Include="src\leds\Matrix.h" />
     <ClInclude Include="src\PCCommunications.h" />
     <ClInclude Include="src\PCCommunicationsArduino.h" />
     <ClInclude Include="src\PCCommunicationsDefines.h" />
@@ -153,13 +155,15 @@
     <ClCompile Include="data\display\surfaceport.c" />
     <ClCompile Include="data\display\surfaceport2.c" />
     <ClCompile Include="data\display\system.c" />
-    <ClCompile Include="src\controls\BindingManager.cpp" />
+    <ClCompile Include="src\bindings\BindingManager.cpp" />
     <ClCompile Include="src\controls\Button.cpp" />
     <ClCompile Include="src\controls\Matrix.cpp" />
     <ClCompile Include="src\display\Display.cpp" />
     <ClCompile Include="src\display\Screen.cpp" />
     <ClCompile Include="src\display\ScreenGeneral.cpp" />
     <ClCompile Include="src\Eliteduino.cpp" />
+    <ClCompile Include="src\leds\Controller.cpp" />
+    <ClCompile Include="src\leds\Matrix.cpp" />
     <ClCompile Include="src\PCCommunications.cpp" />
     <ClCompile Include="src\PCCommunicationsArduino.cpp" />
     <ClCompile Include="src\Property.cpp" />

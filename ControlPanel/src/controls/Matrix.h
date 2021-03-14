@@ -1,5 +1,5 @@
-#ifndef __ELITEDUINO_MATRIX_H__
-#define __ELITEDUINO_MATRIX_H__
+#ifndef __ELITEDUINO_CONTROL_MATRIX_H__
+#define __ELITEDUINO_CONTROL_MATRIX_H__
 
 #include <stdint.h>
 
@@ -7,10 +7,14 @@ namespace Eliteduino
 {
 	class PCCommunications;
 
+	namespace Bindings
+	{
+		union Binding;
+	}
+
 	namespace Controls
 	{
 		class Button;
-		union Binding;
 
 		class Matrix
 		{
@@ -22,8 +26,8 @@ namespace Eliteduino
 
 			void SetNormallyOpen( uint8_t index, bool isOpen );
 			void SetNormallyOpen( uint8_t row, uint8_t column, bool isOpen );
-			void SetBinding( uint8_t index, const Binding* binding );
-			void SetBinding( uint8_t row, uint8_t column, const Binding* binding );
+			void SetBinding( uint8_t index, const Bindings::Binding* binding );
+			void SetBinding( uint8_t row, uint8_t column, const Bindings::Binding* binding );
 
 			void Update();
 
@@ -40,4 +44,4 @@ namespace Eliteduino
 	}
 }
 
-#endif // __ELITEDUINO_MATRIX_H__
+#endif // __ELITEDUINO_CONTROL_MATRIX_H__

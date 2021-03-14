@@ -21,35 +21,48 @@ namespace
 
 	void InitializeGamepad()
 	{
-		Gamepad.begin();
+		Gamepad1.begin();
 	}
 
 	void InitializeKeyboard()
 	{
-		
+		SingleNKROKeyboard.begin();
 	}
 
-	void SendGamepadEvent( Eliteduino::eEventType eventType, uint8_t controlId )
+	void SendGamepad1Event( Eliteduino::eEventType eventType, uint8_t controlId )
 	{
-		PRINT( "Sending gamepad event (", (int)eventType, "/", controlId, ")" );
+		PRINT( "Sending Gamepad1 event (", (int)eventType, "/", controlId, ")" );
 
 		switch ( eventType )
 		{
 		case Eliteduino::eEventType::Press:
-			Gamepad.press( controlId );
+			Gamepad1.press( controlId );
 			break;
 
 		case Eliteduino::eEventType::Release:
-			Gamepad.release( controlId );
+			Gamepad1.release( controlId );
 			break;
 		}
 
-		Gamepad.write();
+		Gamepad1.write();
 	}
 
 	void SendKeyboardEvent( Eliteduino::eEventType eventType, uint8_t controlId )
 	{
+		PRINT( "Sending keyboard event (", (int)eventType, "/", controlId, ")" );
 
+		switch ( eventType )
+		{
+		case Eliteduino::eEventType::Press:
+			SingleNKROKeyboard.add( (KeyboardKeycode)controlId );
+			break;
+
+		case Eliteduino::eEventType::Release:
+			SingleNKROKeyboard.remove( (KeyboardKeycode)controlId );
+			break;
+		}
+
+		SingleNKROKeyboard.send();
 	}
 }
 
@@ -86,7 +99,7 @@ void Eliteduino::Hid::SendInputEvent( eVirtualControlType controlType, eEventTyp
 		break;
 
 	case eVirtualControlType::Gamepad:
-		SendGamepadEvent( eventType, controlId );
+		SendGamepad1Event( eventType, controlId );
 		break;
 	}
 }
