@@ -81,9 +81,6 @@
     <ClInclude Include="src\debug\Debug.h">
       <Filter>Debug</Filter>
     </ClInclude>
-    <ClInclude Include="src\controls\Utility.h">
-      <Filter>Controls</Filter>
-    </ClInclude>
     <ClInclude Include="src\leds\Matrix.h">
       <Filter>Leds</Filter>
     </ClInclude>
@@ -96,6 +93,7 @@
     <ClInclude Include="src\leds\Controller.h">
       <Filter>Leds</Filter>
     </ClInclude>
+    <ClInclude Include="src\MatrixUtility.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Eliteduino.cpp" />

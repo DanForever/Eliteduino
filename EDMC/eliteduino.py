@@ -83,7 +83,10 @@ class Eliteduino():
     def find_device_path(self):
         with self.hid.enumerate() as enumeration:
             for deviceInfo in enumeration:
+                print("Found hid device vid: " + hex(deviceInfo.vendor_id) + ", usage: " + hex(deviceInfo.usage_page))
                 if(deviceInfo.vendor_id == 0x16c0 and deviceInfo.usage_page==0xffab):
+                    self.device_path = deviceInfo.path
+                elif(deviceInfo.vendor_id == 0x1b4f and deviceInfo.usage_page==0xffc0):
                     self.device_path = deviceInfo.path
                     break
     
@@ -104,6 +107,7 @@ class Eliteduino():
         if(self.device is None):
             self.device = self.hid.device(self.device_path)
         
+        print("Attempting to connect to device...")
         self.device.try_connect()
         
         return self.device.connected
@@ -130,6 +134,8 @@ class Eliteduino():
         
         if(self.connect()):
             self.device.write(self.buffer)
+        else:
+            print("No device connected!")
         
         [print(hex(b), end=" ") for b in self.buffer._instance]
         print("")

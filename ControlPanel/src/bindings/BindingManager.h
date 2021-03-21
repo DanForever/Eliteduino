@@ -5,7 +5,7 @@ namespace Eliteduino
 {
 	namespace Bindings
 	{
-		union Binding;
+		struct Binding;
 
 		class BindingsManager
 		{
@@ -14,7 +14,9 @@ namespace Eliteduino
 
 			bool AreStoredBindingsValid() const;
 
-			const Binding* GetBinding( uint8_t buttonIndex ) const;
+			const Binding* GetBinding( uint8_t index ) const;
+			const Binding* GetBinding( uint8_t row, uint8_t column ) const;
+
 			uint8_t GetBindingCount() const { return m_bindingCount; }
 
 		private:
@@ -26,6 +28,7 @@ namespace Eliteduino
 
 			Binding* m_bindings;
 			uint8_t m_bindingCount = 0;
+			uint8_t m_rowCount;
 		};
 	}
 }

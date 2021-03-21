@@ -31,8 +31,9 @@ namespace Eliteduino
 
 	enum class eControlRole : uint8_t
 	{
-		Undefined,
-		LandingGear,
+		Undefined = 255,
+
+		LandingGear = 0,
 		CargoScoop,
 		Lights,
 		SilentRunning,
@@ -43,6 +44,22 @@ namespace Eliteduino
 		FrameshiftJump,
 		Supercruise,
 		Heatsink,
+
+		Count
+	};
+
+	enum class StatType : uint8_t
+	{
+		Cmdr = 1,
+		System,
+		Station,
+		StationType,
+		FsdCharging,
+		FsdCooldown,
+		MassLocked,
+		Overheating,
+		BeingInterdicted,
+		HardpointsDeployed,
 	};
 }
 

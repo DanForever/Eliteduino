@@ -11,7 +11,7 @@ namespace Eliteduino
 
 	namespace Bindings
 	{
-		union Binding;
+		struct Binding;
 	}
 
 	namespace Leds

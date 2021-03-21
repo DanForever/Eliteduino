@@ -7,6 +7,8 @@
 #include <SPI.h>
 #include <ILI9341_t3.h>
 
+#include "../debug/Debug.h"
+
 // For the Adafruit shield, these are the default.
 #define TFT_DC  9
 #define TFT_CS 10
@@ -15,8 +17,11 @@ ILI9341_t3* Eliteduino::Display::Screen::m_tft = nullptr;
 
 Eliteduino::Display::Screen::Screen()
 {
+	PRINT( "Eliteduino::Display::Screen::Screen" );
+
 	if ( !m_tft )
 	{
+		PRINT( "Initialising TFT Library..." );
 		m_tft = new ILI9341_t3( TFT_CS, TFT_DC );
 		m_tft->begin();
 		m_tft->setRotation( 3 );
@@ -27,11 +32,15 @@ Eliteduino::Display::Screen::Screen()
 
 void Eliteduino::Display::Screen::Clear()
 {
+	PRINT( "Eliteduino::Display::Screen::Clear" );
+
 	m_tft->fillScreen( ILI9341_BLACK );
 }
 
 void Eliteduino::Display::Screen::PrintLine( const char* text )
 {
+	PRINT( "Eliteduino::Display::Screen::PrintLine" );
+
 	m_tft->println( text );
 }
 

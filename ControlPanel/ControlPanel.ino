@@ -4,8 +4,6 @@ Eliteduino::PCCommunications Comms;
 
 void setup()
 {
-	Serial.begin( 9600 );
-
 	Comms.Initialize();
 
 	DISPLAY_SETUP();
@@ -21,6 +19,7 @@ void loop()
 		const Eliteduino::Message& message = Comms.GetMessage();
 
 		DISPLAY_PROCESS_MESSAGE( message );
+		LEDS_PROCESS_MESSAGE( message );
 	}
 
 	DISPLAY_UPDATE();

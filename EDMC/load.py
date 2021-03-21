@@ -33,9 +33,19 @@ def plugin_prefs(parent, cmdr, is_beta):
 
     global eliteduino_instance
     nb.Button(frame, text="Send dummy data", command=eliteduino_instance.dummy_values).grid()
+    nb.Button(frame, text="Set Mass locked", command=dummy_set_masslock).grid()
+    nb.Button(frame, text="Clear Mass locked", command=dummy_clear_masslock).grid()
 
     return frame
 
+def dummy_set_masslock():
+    global eliteduino_instance
+    eliteduino_instance.update_stat(StatType.MASS_LOCKED, True, True)
+    
+def dummy_clear_masslock():
+    global eliteduino_instance
+    eliteduino_instance.update_stat(StatType.MASS_LOCKED, False, True)
+    
 def debug_write_journal_entry_to_log(entry):
     # some quick and dirty logging to collect a whole bunch of updates
     import os

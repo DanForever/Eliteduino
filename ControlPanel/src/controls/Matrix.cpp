@@ -5,7 +5,7 @@
 #include "Matrix.h"
 
 #include "Button.h"
-#include "Utility.h"
+#include "../MatrixUtility.h"
 
 #include <Arduino.h>
 #include "..\leds\Matrix.h"
@@ -43,7 +43,7 @@ void Eliteduino::Controls::Matrix::Initialize( const uint8_t* rows, const uint8_
 
 		for ( uint8_t row = 0; row < m_rowCount; ++row )
 		{
-			const uint8_t index = ButtonIndex( row, column, m_rowCount );
+			const uint8_t index = MatrixIndex( row, column, m_rowCount );
 			Button& button = m_buttons[ index ];
 
 			const uint8_t rowPin = m_rows[ row ];
@@ -62,7 +62,7 @@ void Eliteduino::Controls::Matrix::SetNormallyOpen( uint8_t index, bool isOpen )
 
 void Eliteduino::Controls::Matrix::SetNormallyOpen( uint8_t row, uint8_t column, bool isOpen )
 {
-	const uint8_t index = ButtonIndex( row, column, m_rowCount );
+	const uint8_t index = MatrixIndex( row, column, m_rowCount );
 	SetNormallyOpen( index, isOpen );
 }
 
@@ -74,7 +74,7 @@ void Eliteduino::Controls::Matrix::SetBinding( uint8_t index, const Bindings::Bi
 
 void Eliteduino::Controls::Matrix::SetBinding( uint8_t row, uint8_t column, const Bindings::Binding* binding )
 {
-	const uint8_t index = ButtonIndex( row, column, m_rowCount );
+	const uint8_t index = MatrixIndex( row, column, m_rowCount );
 	SetBinding( index, binding );
 }
 
@@ -86,7 +86,7 @@ void Eliteduino::Controls::Matrix::Update()
 
 		for ( uint8_t row = 0; row < m_rowCount; ++row )
 		{
-			const uint8_t index = ButtonIndex( row, column, m_rowCount );
+			const uint8_t index = MatrixIndex( row, column, m_rowCount );
 			Button& button = m_buttons[ index ];
 
 			button.Update();

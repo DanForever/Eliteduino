@@ -5,7 +5,7 @@
 
 namespace Eliteduino
 {
-	enum MessageType
+	enum class MessageType : uint8_t
 	{
 		Data = 1,
 		ControlsRebind,

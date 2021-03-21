@@ -125,7 +125,6 @@
     <ClInclude Include="src\Containers.h" />
     <ClInclude Include="src\controls\Button.h" />
     <ClInclude Include="src\controls\Matrix.h" />
-    <ClInclude Include="src\controls\Utility.h" />
     <ClInclude Include="src\debug\Debug.h" />
     <ClInclude Include="src\Devices.h" />
     <ClInclude Include="src\display\Assets.h" />
@@ -137,6 +136,7 @@
     <ClInclude Include="src\Event.h" />
     <ClInclude Include="src\leds\Controller.h" />
     <ClInclude Include="src\leds\Matrix.h" />
+    <ClInclude Include="src\MatrixUtility.h" />
     <ClInclude Include="src\PCCommunications.h" />
     <ClInclude Include="src\PCCommunicationsArduino.h" />
     <ClInclude Include="src\PCCommunicationsDefines.h" />

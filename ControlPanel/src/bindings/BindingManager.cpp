@@ -6,6 +6,7 @@
 #include "Binding.h"
 
 #include "../debug/Debug.h"
+#include "../MatrixUtility.h"
 
 // Header:
 // 32 bit CRC
@@ -78,8 +79,8 @@ void Eliteduino::Bindings::BindingsManager::StoreDefaultBindings()
 		{
 			const uint16_t position = BINDINGS_POSITION + ( i * sizeof( Binding ) ) + byte;
 
-			PRINT( "    -- Writing byte ", binding.Raw[ byte ], " to position: ", position );
-			EEPROM.update( position, binding.Raw[ byte ] );
+			PRINT( "    -- Writing byte ", binding.Raw( byte ), " to position: ", position );
+			EEPROM.update( position, binding.Raw( byte ) );
 		}
 	}
 
@@ -103,8 +104,8 @@ void Eliteduino::Bindings::BindingsManager::LoadBindings()
 		{
 			const uint16_t position = BINDINGS_POSITION + ( i * sizeof( Binding ) ) + byte;
 
-			binding.Raw[ byte ] = EEPROM[ position ];
-			PRINT( "    -- Read byte ", binding.Raw[ byte ], " to position: ", position );
+			binding.Raw( byte ) = EEPROM[ position ];
+			PRINT( "    -- Read byte ", binding.Raw( byte ), " to position: ", position );
 		}
 		PRINT( "  - Virtual control type: ", (int)binding.VirtualType );
 		PRINT( "  - Physical control type: ", (int)binding.PhysicalType );
@@ -112,9 +113,13 @@ void Eliteduino::Bindings::BindingsManager::LoadBindings()
 	}
 }
 
+#ifdef ELITEDUINO_DEVICE_PROMICRO_16BUTTONSONLY
 #include <HID-Project.h>
+#endif
+
 void Eliteduino::Bindings::BindingsManager::Initialize( uint8_t numRows, uint8_t numCols )
 {
+	m_rowCount = numRows;
 	m_bindingCount = numRows * numCols;
 
 	m_bindings = new Binding[ m_bindingCount ];
@@ -213,7 +218,13 @@ bool Eliteduino::Bindings::BindingsManager::AreStoredBindingsValid() const
 	return storedCRC == calculatedCRC;
 }
 
-const Eliteduino::Bindings::Binding* Eliteduino::Bindings::BindingsManager::GetBinding( uint8_t buttonIndex ) const
+const Eliteduino::Bindings::Binding* Eliteduino::Bindings::BindingsManager::GetBinding( uint8_t index ) const
 {
-	return &m_bindings[ buttonIndex ];
+	return &m_bindings[ index ];
+}
+
+const Eliteduino::Bindings::Binding* Eliteduino::Bindings::BindingsManager::GetBinding( uint8_t row, uint8_t column ) const
+{
+	uint8_t index = MatrixIndex( row, column, m_rowCount );
+	return &m_bindings[ index ];
 }

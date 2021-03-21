@@ -7,20 +7,13 @@
 #include "ScreenGeneral.h"
 #include "Database.h"
 #include "../PCCommunications.h"
+#include "../PCCommunicationsDefines.h"
 #include "../debug/Debug.h"
 
 #include <Arduino.h>
 
 namespace
 {
-	enum StatType
-	{
-		Cmdr = 1,
-		System,
-		Station,
-		StationType,
-	};
-
 	void ProcessStringStat( const uint8_t* sourceBuffer, Eliteduino::Property<const char*>& targetProperty )
 	{
 		targetProperty = reinterpret_cast<const char*>( sourceBuffer );
@@ -31,6 +24,7 @@ Eliteduino::Display::Display Eliteduino::Display::gDisplay;
 
 void Eliteduino::Display::Display::Setup()
 {
+	PRINT( "Creating Database and screen objects" );
 	m_database = new Eliteduino::Display::Database();
 	m_screen = new Eliteduino::Display::GeneralInfo( m_database );
 }

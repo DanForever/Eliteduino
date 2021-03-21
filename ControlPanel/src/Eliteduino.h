@@ -42,4 +42,20 @@ namespace Eliteduino
 
 #endif // ELITEDUINO_BUTTONS
 
+//-----------------------------------------------------------------------------------------------------------------------------------
+
+#ifdef ELITEDUINO_LEDS
+
+#	include "leds/Controller.h"
+
+extern Eliteduino::Leds::Controller gLedController;
+
+#define LEDS_PROCESS_MESSAGE( message ) gLedController.ProcessMessage( message )
+
+#else
+
+#define LEDS_PROCESS_MESSAGE(...)
+
+#endif //  ELITEDUINO_LEDS
+
 #endif // _ELITEDUINO_H_
