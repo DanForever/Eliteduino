@@ -88,6 +88,9 @@ void Eliteduino::Leds::Controller::ProcessStatReport( const Message& message )
 		}
 
 		break;
+
+	default:
+		break;
 	}
 }
 
