@@ -9,7 +9,7 @@ template<class T, int N>
 constexpr int ArraySize( T( & )[ N ] ) { return N; }
 
 // Temporary until proper device configurations are figured out and defined
-#define ELITEDUINO_DEVICE_TEENSY_BUTTONSANDSCREEN
+//#define ELITEDUINO_DEVICE_TEENSY_BUTTONSANDSCREEN
 //#define ELITEDUINO_DEVICE_PROMICRO_16BUTTONSONLY
 
 //------------------------------------------------------------------------------------------------
@@ -37,9 +37,9 @@ const uint8_t LED_CONTROLLER_ROW_COUNT = ArraySize( BUTTON_ROWS );
 
 #ifdef ELITEDUINO_DEVICE_TEENSY_BUTTONSANDSCREEN
 
-// todo: Actual values (for now they're copied from the pro micro)
-const uint8_t BUTTON_COLUMNS[] = {1};
-const uint8_t BUTTON_ROWS[] = {2};
+// todo: Actual values
+const uint8_t BUTTON_COLUMNS[] = {14};
+const uint8_t BUTTON_ROWS[] = {0};
 const uint8_t BUTTON_COLUMN_COUNT = ArraySize( BUTTON_COLUMNS );
 const uint8_t BUTTON_ROW_COUNT = ArraySize( BUTTON_ROWS );
 const uint8_t DEBOUNCE_INTERVAL = 25;
