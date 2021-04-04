@@ -1,7 +1,7 @@
-from pyhid import pyhid
+from pyhid import buffer
 from defines import *
 
-class StatBuffer(pyhid.Buffer):
+class StatBuffer(buffer.Buffer):
     def __init__(self):
         super(StatBuffer, self).__init__(HID_BUFFER_SIZE)
         self.data_length = 0
@@ -38,6 +38,16 @@ class StatBuffer(pyhid.Buffer):
         # For now we assume that the value fits into a single byte
         self[STAT_DATA_POSITION] = value
         
+    def bytes(self, with_reportid = True):
+        starting_byte = 0 if with_reportid else 1
+        size = len(self) - starting_byte
+        out_data = bytearray(size)
+        print(f"Creating byte array starting from byte {starting_byte} and of size {size}")
+        for i in range(0, size):
+            out_data[i] = self[i + starting_byte]
+            
+        return out_data
+        
     @property
     def data_start(self):
         return STAT_DATA_POSITION
@@ -48,7 +58,7 @@ class StatBuffer(pyhid.Buffer):
         
     # Override len() so that we return the amount of the buffer used, rather than the full buffer each time
     def __len__(self):
-        return self.data_end
+        return self.data_end + 1
     
     def _set_data(self, value):
         if(isinstance(value, str)):
@@ -64,13 +74,52 @@ class StatBuffer(pyhid.Buffer):
     stat_type = property(fset=_set_stat_type)
     data = property(fset=_set_data)
 
+class Connection():
+    def __init__(self):
+        self.device = None
+        
+    def shutdown(self):
+        if self.device is not None:
+            self.device.shutdown()
+        
+    @property
+    def connected(self):
+        return self.device is not None and self.device.connected
+    
+    def connect(self):
+        if self.connected:
+            return True
+        
+        # First try and connect using hid
+        print("Attempting to connect to device using HID...")
+        import hiddevice
+        hid_device = hiddevice.Device()
+        if hid_device.connect():
+            self.device = hid_device
+            return True
+        hid_device.shutdown()
+        
+        print("Attempting to connect to device using Serial...")
+        import serialdevice
+        serial_device = serialdevice.Device()
+        if serial_device.connect():
+            self.device = serial_device
+            return True
+        serial_device.shutdown()
+        
+        print("Failed to connect using any protocol!")
+        return False
+        
+    def disconnect(self):
+        if self.connected:
+            self.device.disconnect()
+        
+    def write(self, buffer):
+        self.device.write(buffer)
+        
 class Eliteduino():
     def __init__(self):
-        self.hid = pyhid.Hid()
-        self.hid.init()
-        
-        self.device_path = None
-        self.device = None
+        self.connection = Connection()
         
         self.data = {}
         self.buffer = StatBuffer()
@@ -78,39 +127,8 @@ class Eliteduino():
         self.build_vicinity_map()
         
     def shutdown(self):
-        self.hid.shutdown()
-    
-    def find_device_path(self):
-        with self.hid.enumerate() as enumeration:
-            for deviceInfo in enumeration:
-                print("Found hid device vid: " + hex(deviceInfo.vendor_id) + ", usage: " + hex(deviceInfo.usage_page))
-                if(deviceInfo.vendor_id == 0x16c0 and deviceInfo.usage_page==0xffab):
-                    self.device_path = deviceInfo.path
-                elif(deviceInfo.vendor_id == 0x1b4f and deviceInfo.usage_page==0xffc0):
-                    self.device_path = deviceInfo.path
-                    break
-    
-    @property
-    def connected(self):
-        return self.device is not None and self.device.connected
-        
-    def connect(self):
-        if(self.connected):
-            return True
-        
-        # First we need to check to see if we are connected to the eliteduino
-        if(self.device_path is None):
-            self.find_device_path()
-            if(self.device_path is None):
-                return False
-                
-        if(self.device is None):
-            self.device = self.hid.device(self.device_path)
-        
-        print("Attempting to connect to device...")
-        self.device.try_connect()
-        
-        return self.device.connected
+        self.connection.disconnect()
+        self.connection.shutdown()
         
     def update_stat(self, stat_type, value, force = False):
         print(">>> Update Stat <<<")
@@ -132,8 +150,9 @@ class Eliteduino():
         self.buffer.stat_type = stat_type
         self.buffer.data = value
         
-        if(self.connect()):
-            self.device.write(self.buffer)
+        if(self.connection.connect()):
+            num_bytes_written = self.connection.write(self.buffer)
+            print(f"Buffer written to USB, {num_bytes_written} bytes written")
         else:
             print("No device connected!")
         

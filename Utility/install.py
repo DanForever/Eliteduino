@@ -23,6 +23,12 @@ pyhid_source_directory = os.path.join(source_directory, "Submodules", "PyHid", "
 pyhid_target_directory = os.path.join(plugin_directory, "pyhid")
 shutil.copytree(pyhid_source_directory, pyhid_target_directory, ignore=shutil.ignore_patterns("__pycache__"))
 
+# Same again for all the other submodules
+print("Copying pyserial")
+pyserial_source_directory = os.path.join(source_directory, "Submodules", "pyserial", "serial")
+pyserial_target_directory = os.path.join(plugin_directory, "serial")
+shutil.copytree(pyserial_source_directory, pyserial_target_directory, ignore=shutil.ignore_patterns("__pycache__"))
+
 print("Ensuring the downloads folder exists")
 downloads_directory = os.path.join(script_directory, "downloads")
 
