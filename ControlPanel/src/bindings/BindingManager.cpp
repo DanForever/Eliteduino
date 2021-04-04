@@ -1,4 +1,3 @@
-
 #include <Arduino.h>
 #include <EEPROM.h>
 
@@ -7,6 +6,11 @@
 
 #include "../debug/Debug.h"
 #include "../MatrixUtility.h"
+
+#include "../Devices.h"
+#ifdef ELITEDUINO_DEVICE_PROMICRO_16BUTTONSONLY
+#include <HID-Project.h>
+#endif
 
 // Header:
 // 32 bit CRC
@@ -20,6 +24,81 @@ namespace
 	static const uint16_t BINDINGS_POSITION = VERSION_POSITION + sizeof( uint16_t );
 
 	static const uint16_t BINDINGS_VERSION = 1;
+
+	Eliteduino::Bindings::Binding* ForceConfigureDansBindings()
+	{
+		using namespace Eliteduino;
+
+		Bindings::Binding* bindings = new Bindings::Binding[ 16 ];
+
+		bindings[ 0 ].VirtualType = eVirtualControlType::Keyboard;
+		bindings[ 0 ].PhysicalType = ePhysicalControlType::Toggle;
+		bindings[ 0 ].Value = KEY_L;
+
+		bindings[ 1 ].VirtualType = eVirtualControlType::Keyboard;
+		bindings[ 1 ].PhysicalType = ePhysicalControlType::Momentary;
+		bindings[ 1 ].Value = KEY_HOME;
+
+		bindings[ 2 ].VirtualType = eVirtualControlType::Keyboard;
+		bindings[ 2 ].PhysicalType = ePhysicalControlType::Momentary;
+		bindings[ 2 ].Value = KEY_F3;
+
+		bindings[ 3 ].VirtualType = eVirtualControlType::Keyboard;
+		bindings[ 3 ].PhysicalType = ePhysicalControlType::Momentary;
+		bindings[ 3 ].Value = KEY_F4;
+
+		bindings[ 4 ].VirtualType = eVirtualControlType::Keyboard;
+		bindings[ 4 ].PhysicalType = ePhysicalControlType::Momentary;
+		bindings[ 4 ].Value = KEY_LEFT_BRACE;
+
+		bindings[ 5 ].VirtualType = eVirtualControlType::Keyboard;
+		bindings[ 5 ].PhysicalType = ePhysicalControlType::Momentary;
+		bindings[ 5 ].Value = KEY_H;
+
+		bindings[ 6 ].VirtualType = eVirtualControlType::Keyboard;
+		bindings[ 6 ].PhysicalType = ePhysicalControlType::Momentary;
+		bindings[ 6 ].Value = KEY_B;
+
+		bindings[ 7 ].VirtualType = eVirtualControlType::Keyboard;
+		bindings[ 7 ].PhysicalType = ePhysicalControlType::Toggle;
+		bindings[ 7 ].Value = KEY_Z;
+
+		bindings[ 8 ].VirtualType = eVirtualControlType::Keyboard;
+		bindings[ 8 ].PhysicalType = ePhysicalControlType::Toggle;
+		bindings[ 8 ].Value = KEY_INSERT;
+
+		bindings[ 9 ].VirtualType = eVirtualControlType::Keyboard;
+		bindings[ 9 ].PhysicalType = ePhysicalControlType::Momentary;
+		bindings[ 9 ].Value = KEY_DELETE;
+
+		bindings[ 10 ].VirtualType = eVirtualControlType::Keyboard;
+		bindings[ 10 ].PhysicalType = ePhysicalControlType::Momentary;
+		bindings[ 10 ].Value = KEY_END;
+
+		bindings[ 11 ].VirtualType = eVirtualControlType::Keyboard;
+		bindings[ 11 ].PhysicalType = ePhysicalControlType::Momentary;
+		bindings[ 11 ].Value = KEY_G;
+
+		bindings[ 12 ].VirtualType = eVirtualControlType::Keyboard;
+		bindings[ 12 ].PhysicalType = ePhysicalControlType::Momentary;
+		bindings[ 12 ].Value = KEY_O;
+
+		bindings[ 13 ].VirtualType = eVirtualControlType::Keyboard;
+		bindings[ 13 ].PhysicalType = ePhysicalControlType::Momentary;
+		bindings[ 13 ].Value = KEY_V;
+
+		bindings[ 14 ].VirtualType = eVirtualControlType::Keyboard;
+		bindings[ 14 ].PhysicalType = ePhysicalControlType::Momentary;
+		bindings[ 14 ].ControlRole = eControlRole::FrameshiftJump;
+		bindings[ 14 ].Value = KEY_J;
+
+		bindings[ 15 ].VirtualType = eVirtualControlType::Keyboard;
+		bindings[ 15 ].PhysicalType = ePhysicalControlType::Momentary;
+		bindings[ 15 ].ControlRole = eControlRole::Supercruise;
+		bindings[ 15 ].Value = KEY_K;
+
+		return bindings;
+	}
 }
 
 inline uint32_t Eliteduino::Bindings::BindingsManager::CalculateCRC() const
@@ -113,84 +192,15 @@ void Eliteduino::Bindings::BindingsManager::LoadBindings()
 	}
 }
 
-#ifdef ELITEDUINO_DEVICE_PROMICRO_16BUTTONSONLY
-#include <HID-Project.h>
-#endif
-
 void Eliteduino::Bindings::BindingsManager::Initialize( uint8_t numRows, uint8_t numCols )
 {
 	m_rowCount = numRows;
 	m_bindingCount = numRows * numCols;
 
-	m_bindings = new Binding[ m_bindingCount ];
-
-	m_bindings[ 0 ].VirtualType = eVirtualControlType::Keyboard;
-	m_bindings[ 0 ].PhysicalType = ePhysicalControlType::Toggle;
-	m_bindings[ 0 ].Value = KEY_L;
-
-	m_bindings[ 1 ].VirtualType = eVirtualControlType::Keyboard;
-	m_bindings[ 1 ].PhysicalType = ePhysicalControlType::Momentary;
-	m_bindings[ 1 ].Value = KEY_HOME;
-
-	m_bindings[ 2 ].VirtualType = eVirtualControlType::Keyboard;
-	m_bindings[ 2 ].PhysicalType = ePhysicalControlType::Momentary;
-	m_bindings[ 2 ].Value = KEY_F3;
-
-	m_bindings[ 3 ].VirtualType = eVirtualControlType::Keyboard;
-	m_bindings[ 3 ].PhysicalType = ePhysicalControlType::Momentary;
-	m_bindings[ 3 ].Value = KEY_F4;
-
-	m_bindings[ 4 ].VirtualType = eVirtualControlType::Keyboard;
-	m_bindings[ 4 ].PhysicalType = ePhysicalControlType::Momentary;
-	m_bindings[ 4 ].Value = KEY_LEFT_BRACE;
-
-	m_bindings[ 5 ].VirtualType = eVirtualControlType::Keyboard;
-	m_bindings[ 5 ].PhysicalType = ePhysicalControlType::Momentary;
-	m_bindings[ 5 ].Value = KEY_H;
-
-	m_bindings[ 6 ].VirtualType = eVirtualControlType::Keyboard;
-	m_bindings[ 6 ].PhysicalType = ePhysicalControlType::Momentary;
-	m_bindings[ 6 ].Value = KEY_B;
-
-	m_bindings[ 7 ].VirtualType = eVirtualControlType::Keyboard;
-	m_bindings[ 7 ].PhysicalType = ePhysicalControlType::Toggle;
-	m_bindings[ 7 ].Value = KEY_Z;
-
-	m_bindings[ 8 ].VirtualType = eVirtualControlType::Keyboard;
-	m_bindings[ 8 ].PhysicalType = ePhysicalControlType::Toggle;
-	m_bindings[ 8 ].Value = KEY_INSERT;
-
-	m_bindings[ 9 ].VirtualType = eVirtualControlType::Keyboard;
-	m_bindings[ 9 ].PhysicalType = ePhysicalControlType::Momentary;
-	m_bindings[ 9 ].Value = KEY_DELETE;
-
-	m_bindings[ 10 ].VirtualType = eVirtualControlType::Keyboard;
-	m_bindings[ 10 ].PhysicalType = ePhysicalControlType::Momentary;
-	m_bindings[ 10 ].Value = KEY_END;
-
-	m_bindings[ 11 ].VirtualType = eVirtualControlType::Keyboard;
-	m_bindings[ 11 ].PhysicalType = ePhysicalControlType::Momentary;
-	m_bindings[ 11 ].Value = KEY_G;
-
-	m_bindings[ 12 ].VirtualType = eVirtualControlType::Keyboard;
-	m_bindings[ 12 ].PhysicalType = ePhysicalControlType::Momentary;
-	m_bindings[ 12 ].Value = KEY_O;
-
-	m_bindings[ 13 ].VirtualType = eVirtualControlType::Keyboard;
-	m_bindings[ 13 ].PhysicalType = ePhysicalControlType::Momentary;
-	m_bindings[ 13 ].Value = KEY_V;
-
-	m_bindings[ 14 ].VirtualType = eVirtualControlType::Keyboard;
-	m_bindings[ 14 ].PhysicalType = ePhysicalControlType::Momentary;
-	m_bindings[ 14 ].ControlRole = eControlRole::FrameshiftJump;
-	m_bindings[ 14 ].Value = KEY_J;
-
-	m_bindings[ 15 ].VirtualType = eVirtualControlType::Keyboard;
-	m_bindings[ 15 ].PhysicalType = ePhysicalControlType::Momentary;
-	m_bindings[ 15 ].ControlRole = eControlRole::Supercruise;
-	m_bindings[ 15 ].Value = KEY_K;
-
+	m_bindings = ForceConfigureDansBindings();
 	return;
+
+	m_bindings = new Binding[ m_bindingCount ];
 
 	// In future, if we change the layout of the binding struct for any reason,
 	// we will need to change this to be able to support reading in data in an old format

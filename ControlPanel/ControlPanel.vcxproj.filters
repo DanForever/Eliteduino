@@ -94,6 +94,9 @@
       <Filter>Leds</Filter>
     </ClInclude>
     <ClInclude Include="src\MatrixUtility.h" />
+    <ClInclude Include="src\PCCommunicationsSerial.h">
+      <Filter>Communications</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Eliteduino.cpp" />
@@ -157,6 +160,12 @@
     </ClCompile>
     <ClCompile Include="src\leds\Controller.cpp">
       <Filter>Leds</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PCCommunicationsTeensy.cpp">
+      <Filter>Communications\Platform Specific</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PCCommunicationsSerial.cpp">
+      <Filter>Communications</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

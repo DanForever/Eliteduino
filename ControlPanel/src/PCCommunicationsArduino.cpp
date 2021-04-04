@@ -1,7 +1,5 @@
 #include "PCCommunicationsArduino.h"
 
-#include "Architecture.h"
-
 #ifndef ELITEDUINO_TEENSY
 
 #include <Arduino.h>
@@ -16,12 +14,20 @@ namespace
 		const uint8_t bufferSize = 128;
 		static uint8_t buffer[ bufferSize ];
 
+		PRINT( "Debug RawHid" );
+
 		RawHID.begin( buffer, bufferSize );
+
+		RawHID.debugPrintHidInfo();
 	}
 
 	void InitializeGamepad()
 	{
+		PRINT( "Debug Gamepad" );
+
 		Gamepad1.begin();
+
+		Gamepad1.debugPrintHidInfo();
 	}
 
 	void InitializeKeyboard()
@@ -29,7 +35,7 @@ namespace
 		SingleNKROKeyboard.begin();
 	}
 
-	void SendGamepad1Event( Eliteduino::eEventType eventType, uint8_t controlId )
+	void SendGamepad1Event( Eliteduino::eEventType eventType, ControlCode controlId )
 	{
 		PRINT( "Sending Gamepad1 event (", (int)eventType, "/", controlId, ")" );
 
@@ -47,7 +53,7 @@ namespace
 		Gamepad1.write();
 	}
 
-	void SendKeyboardEvent( Eliteduino::eEventType eventType, uint8_t controlId )
+	void SendKeyboardEvent( Eliteduino::eEventType eventType, ControlCode controlId )
 	{
 		PRINT( "Sending keyboard event (", (int)eventType, "/", controlId, ")" );
 
@@ -68,6 +74,8 @@ namespace
 
 void Eliteduino::Hid::Initialize()
 {
+	PRINT( "Eliteduino::Hid::Initialize" );
+
 	InitializeRawHid();
 
 	InitializeGamepad();
@@ -90,7 +98,7 @@ uint8_t Eliteduino::Hid::Recieve( uint8_t* buffer )
 	return bytesToRead;
 }
 
-void Eliteduino::Hid::SendInputEvent( eVirtualControlType controlType, eEventType eventType, uint8_t controlId )
+void Eliteduino::Hid::SendInputEvent( eVirtualControlType controlType, eEventType eventType, ControlCode controlId )
 {
 	switch ( controlType )
 	{

@@ -2,6 +2,7 @@
 #define __ELITEDUINO_PC_COMMUNICATIONS_H__
 
 #include <stdint.h>
+#include "Architecture.h"
 
 namespace Eliteduino
 {
@@ -35,7 +36,7 @@ namespace Eliteduino
 		bool MessageReceived() const { return m_message.Size > 0; }
 		const Message& GetMessage() const { return m_message; }
 
-		void SendInputEvent( eVirtualControlType controlType, eEventType eventType, uint8_t controlId );
+		void SendInputEvent( eVirtualControlType controlType, eEventType eventType, ControlCode controlId );
 
 	private:
 		Message m_message;

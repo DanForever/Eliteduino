@@ -1,8 +1,8 @@
 #include "PCCommunications.h"
 
-#include <stdint.h>
-
-#include "Architecture.h"
+#include <Arduino.h>
+#include "debug/Debug.h"
+#include "PCCommunicationsSerial.h"
 
 #ifdef ELITEDUINO_TEENSY
 #	include "PCCommunicationsTeensy.h"
@@ -10,19 +10,19 @@
 #	include "PCCommunicationsArduino.h"
 #endif
 
-#define DO_NOT_WAIT 0
 
 void Eliteduino::PCCommunications::Initialize()
 {
+	Serial::Initialize();
 	Hid::Initialize();
 }
 
 void Eliteduino::PCCommunications::Update()
 {
-	m_message.Size = Hid::Recieve( reinterpret_cast<uint8_t*>( &m_message.Data ) );
+	m_message.Size = Eliteduino::Comms::Recieve( reinterpret_cast<uint8_t*>( &m_message.Data ) );
 }
 
-void Eliteduino::PCCommunications::SendInputEvent( Eliteduino::eVirtualControlType controlType, Eliteduino::eEventType eventType, uint8_t controlId )
+void Eliteduino::PCCommunications::SendInputEvent( Eliteduino::eVirtualControlType controlType, Eliteduino::eEventType eventType, ControlCode controlId )
 {
 	Hid::SendInputEvent( controlType, eventType, controlId );
 }
