@@ -131,13 +131,15 @@ class Eliteduino():
         self.connection.shutdown()
         
     def update_stat(self, stat_type, value, force = False):
+        print("")
         print(">>> Update Stat <<<")
         if(value is None and not force):
             print(f"Not sending {stat_type.name} as value is None")
             return
-            
-        if(self.data.get(stat_type) is value and not force):
-            print(f"Not sending {stat_type.name} as value is the same as was sent previously")
+        
+        previous_value = self.data.get(stat_type)
+        if(previous_value is value and not force):
+            print(f"Not sending {stat_type.name}={value} as previously {stat_type.name}={previous_value}")
             return
         
         [print(hex(b), end=" ") for b in self.buffer._instance]

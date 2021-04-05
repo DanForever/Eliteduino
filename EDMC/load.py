@@ -53,7 +53,7 @@ def debug_write_journal_entry_to_log(entry):
     dumpfile_path = os.path.join(desktop,"edmc-journal_entry.txt")
     try:
         with open(dumpfile_path, "a+") as dumpfile:
-            dumpfile.write(str(data))
+            dumpfile.write(str(entry))
             dumpfile.write("\n")
     except EnvironmentError as e:
         print(f"there was an error opening '{dumpfile_path}': {e}")
@@ -68,12 +68,12 @@ def journal_entry(cmdr, is_beta, system, station, entry, state) -> None:
     debug_write_journal_entry_to_log(entry)
 
 def dashboard_entry(cmdr, is_beta, entry):
-    fsd_charging       : bool(entry.get("Flags") & 0x00020000)
-    fsd_cooldown       : bool(entry.get("Flags") & 0x00040000)
-    masslocked         : bool(entry.get("Flags") & 0x00010000)
-    overheating        : bool(entry.get("Flags") & 0x00200000)
-    being_interdicted  : bool(entry.get("Flags") & 0x00800000)
-    hardpoints         : bool(entry.get("Flags") & 0x00000040)
+    fsd_charging       = bool(entry.get("Flags") & 0x00020000)
+    fsd_cooldown       = bool(entry.get("Flags") & 0x00040000)
+    masslocked         = bool(entry.get("Flags") & 0x00010000)
+    overheating        = bool(entry.get("Flags") & 0x00100000)
+    being_interdicted  = bool(entry.get("Flags") & 0x00800000)
+    hardpoints         = bool(entry.get("Flags") & 0x00000040)
     
     global eliteduino_instance
     eliteduino_instance.update_stat(StatType.FSD_CHARGING, fsd_charging)
