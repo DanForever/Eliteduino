@@ -3,7 +3,7 @@
 
 #include <Arduino.h>
 
-#define ELITEDUINO_DEBUG
+//#define ELITEDUINO_DEBUG
 //#define ELITEDUINO_WAIT_FOR_SERIAL
 
 #ifdef ELITEDUINO_DEBUG

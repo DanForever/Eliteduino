@@ -10,21 +10,8 @@
 #include "../Devices.h"
 #ifdef ELITEDUINO_DEVICE_PROMICRO_16BUTTONSONLY
 #include <HID-Project.h>
-#endif
-
-// Header:
-// 32 bit CRC
-// 16 bit version number
-// 24 byte binding struct * number of buttons
-
 namespace
 {
-	static const uint16_t CRC_POSITION = 0;
-	static const uint16_t VERSION_POSITION = sizeof( uint32_t );
-	static const uint16_t BINDINGS_POSITION = VERSION_POSITION + sizeof( uint16_t );
-
-	static const uint16_t BINDINGS_VERSION = 1;
-
 	Eliteduino::Bindings::Binding* ForceConfigureDansBindings()
 	{
 		using namespace Eliteduino;
@@ -99,6 +86,21 @@ namespace
 
 		return bindings;
 	}
+}
+#endif
+
+// Header:
+// 32 bit CRC
+// 16 bit version number
+// 24 byte binding struct * number of buttons
+
+namespace
+{
+	static const uint16_t CRC_POSITION = 0;
+	static const uint16_t VERSION_POSITION = sizeof( uint32_t );
+	static const uint16_t BINDINGS_POSITION = VERSION_POSITION + sizeof( uint16_t );
+
+	static const uint16_t BINDINGS_VERSION = 1;
 }
 
 inline uint32_t Eliteduino::Bindings::BindingsManager::CalculateCRC() const
@@ -197,8 +199,10 @@ void Eliteduino::Bindings::BindingsManager::Initialize( uint8_t numRows, uint8_t
 	m_rowCount = numRows;
 	m_bindingCount = numRows * numCols;
 
+#ifdef ELITEDUINO_DEVICE_PROMICRO_16BUTTONSONLY
 	m_bindings = ForceConfigureDansBindings();
 	return;
+#endif
 
 	m_bindings = new Binding[ m_bindingCount ];
 

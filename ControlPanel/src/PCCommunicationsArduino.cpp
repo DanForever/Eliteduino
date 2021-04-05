@@ -13,21 +13,11 @@ namespace
 	{
 		const uint8_t bufferSize = 128;
 		static uint8_t buffer[ bufferSize ];
-
-		PRINT( "Debug RawHid" );
-
-		RawHID.begin( buffer, bufferSize );
-
-		RawHID.debugPrintHidInfo();
 	}
 
 	void InitializeGamepad()
 	{
-		PRINT( "Debug Gamepad" );
-
 		Gamepad1.begin();
-
-		Gamepad1.debugPrintHidInfo();
 	}
 
 	void InitializeKeyboard()
