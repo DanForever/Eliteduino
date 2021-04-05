@@ -35,6 +35,8 @@ def plugin_prefs(parent, cmdr, is_beta):
     nb.Button(frame, text="Send dummy data", command=eliteduino_instance.dummy_values).grid()
     nb.Button(frame, text="Set Mass locked", command=dummy_set_masslock).grid()
     nb.Button(frame, text="Clear Mass locked", command=dummy_clear_masslock).grid()
+    nb.Button(frame, text="Set Overheating", command=dummy_set_overheating).grid()
+    nb.Button(frame, text="Clear Overheating", command=dummy_clear_overheating).grid()
 
     return frame
 
@@ -45,6 +47,14 @@ def dummy_set_masslock():
 def dummy_clear_masslock():
     global eliteduino_instance
     eliteduino_instance.update_stat(StatType.MASS_LOCKED, False, True)
+    
+def dummy_set_overheating():
+    global eliteduino_instance
+    eliteduino_instance.update_stat(StatType.OVERHEATING, True, True)
+    
+def dummy_clear_overheating():
+    global eliteduino_instance
+    eliteduino_instance.update_stat(StatType.OVERHEATING, False, True)
     
 def debug_write_journal_entry_to_log(entry):
     # some quick and dirty logging to collect a whole bunch of updates
@@ -75,6 +85,9 @@ def dashboard_entry(cmdr, is_beta, entry):
     being_interdicted  = bool(entry.get("Flags") & 0x00800000)
     hardpoints         = bool(entry.get("Flags") & 0x00000040)
     
+    menu_galaxy_map    = entry.get("GuiFocus") is 6
+    menu_system_map    = entry.get("GuiFocus") is 7
+    
     global eliteduino_instance
     eliteduino_instance.update_stat(StatType.FSD_CHARGING, fsd_charging)
     eliteduino_instance.update_stat(StatType.FSD_COOLDOWN, fsd_cooldown)
@@ -82,3 +95,5 @@ def dashboard_entry(cmdr, is_beta, entry):
     eliteduino_instance.update_stat(StatType.OVERHEATING, overheating)
     eliteduino_instance.update_stat(StatType.BEING_INTERDICTED, being_interdicted)
     eliteduino_instance.update_stat(StatType.HARDPOINTS_DEPLOYED, hardpoints)
+    eliteduino_instance.update_stat(StatType.MENU_GALAXY_MAP, menu_galaxy_map)
+    eliteduino_instance.update_stat(StatType.MENU_SYSTEM_MAP, menu_system_map)

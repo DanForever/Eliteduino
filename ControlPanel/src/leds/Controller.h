@@ -89,7 +89,7 @@ namespace Eliteduino
 		enum class AnimationType : uint8_t
 		{
 			Off,
-			BlinkFast,
+			Blink,
 		};
 
 		struct AnimationData
@@ -125,7 +125,11 @@ namespace Eliteduino
 		private:
 			void Set( const Address& address, bool on );
 
-			void PlayAnimationOff( eControlRole role );
+			void ToggleAnimation( eControlRole role, AnimationType animation, bool play );
+			void PlayAnimation( eControlRole role, AnimationType animation );
+
+			void UpdateAnimationBlink( eControlRole role, const AnimationData& animation );
+
 			void StopAnimation( eControlRole role );
 
 			Matrix* m_matrix = nullptr;

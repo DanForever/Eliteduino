@@ -28,10 +28,12 @@ namespace
 
 		bindings[ 2 ].VirtualType = eVirtualControlType::Keyboard;
 		bindings[ 2 ].PhysicalType = ePhysicalControlType::Momentary;
+		bindings[ 2 ].ControlRole = eControlRole::SystemMap;
 		bindings[ 2 ].Value = KEY_F3;
 
 		bindings[ 3 ].VirtualType = eVirtualControlType::Keyboard;
 		bindings[ 3 ].PhysicalType = ePhysicalControlType::Momentary;
+		bindings[ 3 ].ControlRole = eControlRole::GalaxyMap;
 		bindings[ 3 ].Value = KEY_F4;
 
 		bindings[ 4 ].VirtualType = eVirtualControlType::Keyboard;
@@ -47,7 +49,7 @@ namespace
 		bindings[ 6 ].Value = KEY_B;
 
 		bindings[ 7 ].VirtualType = eVirtualControlType::Keyboard;
-		bindings[ 7 ].PhysicalType = ePhysicalControlType::Toggle;
+		bindings[ 7 ].PhysicalType = ePhysicalControlType::Momentary;
 		bindings[ 7 ].Value = KEY_Z;
 
 		bindings[ 8 ].VirtualType = eVirtualControlType::Keyboard;
@@ -72,6 +74,7 @@ namespace
 
 		bindings[ 13 ].VirtualType = eVirtualControlType::Keyboard;
 		bindings[ 13 ].PhysicalType = ePhysicalControlType::Momentary;
+		bindings[ 13 ].ControlRole = eControlRole::Heatsink;
 		bindings[ 13 ].Value = KEY_V;
 
 		bindings[ 14 ].VirtualType = eVirtualControlType::Keyboard;

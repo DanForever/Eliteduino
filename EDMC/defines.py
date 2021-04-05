@@ -24,6 +24,8 @@ class StatType(IntEnum):
     OVERHEATING = auto()
     BEING_INTERDICTED = auto()
     HARDPOINTS_DEPLOYED = auto()
+    MENU_GALAXY_MAP = auto()
+    MENU_SYSTEM_MAP = auto()
 
 class StationType(IntEnum):
     UNKNOWN_STATION_TYPE = -1

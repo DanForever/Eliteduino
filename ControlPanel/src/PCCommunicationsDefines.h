@@ -60,6 +60,8 @@ namespace Eliteduino
 		Overheating,
 		BeingInterdicted,
 		HardpointsDeployed,
+		MenuGalaxyMap,
+		MenuSystemMap,
 	};
 }
 
