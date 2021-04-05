@@ -18,6 +18,7 @@ teensy: &teensy
     - ./TeensyduinoInstall.linux64 --dir=$HOME/arduino_ide/arduino-$ARDUINO_IDE_VERSION
     # Install libaries
     - $HOME/arduino_ide/arduino-$ARDUINO_IDE_VERSION/arduino --install-library "Bounce2"
+    - $HOME/arduino_ide/arduino-$ARDUINO_IDE_VERSION/arduino --install-library "LedControl"
   before_script:
     # Replace standard teensy headers with our custom ones
     - cp -rf ControlPanel/Build/Arduino/* $HOME/arduino_ide/*
@@ -38,6 +39,7 @@ promicro8: &promicro8
     - $HOME/arduino_ide/arduino-cli lib install "Bounce2"
     - $HOME/arduino_ide/arduino-cli lib install "HID-Project"
     - $HOME/arduino_ide/arduino-cli lib install "ArxContainer"
+    - $HOME/arduino_ide/arduino-cli lib install "LedControl"
   script:
     - $HOME/arduino_ide/arduino-cli compile -b SparkFun:avr:promicro:cpu=8MHzatmega32U4 --build-property compiler.cpp.extra_flags=$DEVICE_CONFIG ControlPanel/ControlPanel.ino
 
