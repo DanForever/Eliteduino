@@ -2,6 +2,17 @@ import eliteduino
 import msvcrt
 from defines import StatType
 
+# There appears to be a bug in the edmc OptionMenu that means the first option is not selected
+stat_type_options = [ "" ]
+for stat_type in StatType:
+    if stat_type >= StatType.FSD_CHARGING:
+        stat_type_options.append(stat_type.name)
+
+def default_journal_dump_filepath():
+    import os
+    desktop = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop')
+    return os.path.join(desktop,"edmc-journal_entry.txt")
+
 def plugin_start3(plugin_dir: str) -> str:
     """
     Load this plugin into EDMC
@@ -30,37 +41,78 @@ def plugin_prefs(parent, cmdr, is_beta):
     """
     import myNotebook as nb
     frame = nb.Frame(parent)
-
+    
+    import tkinter as tk
+    global selected_stat_type
+    selected_stat_type = tk.StringVar()
+    selected_stat_type.set(stat_type_options[1])
+    
     global eliteduino_instance
     nb.Button(frame, text="Send dummy data", command=eliteduino_instance.dummy_values).grid()
-    nb.Button(frame, text="Set Mass locked", command=dummy_set_masslock).grid()
-    nb.Button(frame, text="Clear Mass locked", command=dummy_clear_masslock).grid()
-    nb.Button(frame, text="Set Overheating", command=dummy_set_overheating).grid()
-    nb.Button(frame, text="Clear Overheating", command=dummy_clear_overheating).grid()
+    
+    nb.Button(frame, text="Set", command=set_dummy_status).grid()
+    nb.Button(frame, text="Clear", command=clear_dummy_status).grid(row=2, column=2)
+    nb.OptionMenu(frame, selected_stat_type, *stat_type_options).grid(row=2, column=3)
 
+    from config import config
+    stored_path = config.get("ed_journal_dump_path" )
+    dump_path = config.get("ed_journal_dump_path" ) if stored_path is not None else default_journal_dump_filepath()
+
+    global dump_path_var
+    dump_path_var = tk.StringVar()
+    dump_path_var.set(dump_path)
+    
+    global dump_setting_var
+    dump_setting_var = tk.IntVar()
+    dump_setting_var.set(config.getint("ed_journal_dump_enabled") if not None else 0)
+    
+    nb.Checkbutton(frame, text="Dump journal entries to file", variable = dump_setting_var).grid()
+    nb.Entry(frame, textvariable = dump_path_var).grid(row=3, column=2, columnspan=2)
+    nb.Button(frame, text="Browse", command=choose_dump_file_path).grid(row=3, column=4)
     return frame
 
-def dummy_set_masslock():
-    global eliteduino_instance
-    eliteduino_instance.update_stat(StatType.MASS_LOCKED, True, True)
+def prefs_changed(cmdr, is_beta):
+    """
+    Save settings.
+    """
+    from config import config
     
-def dummy_clear_masslock():
-    global eliteduino_instance
-    eliteduino_instance.update_stat(StatType.MASS_LOCKED, False, True)
+    print("Saving eliteduino settings")
     
-def dummy_set_overheating():
-    global eliteduino_instance
-    eliteduino_instance.update_stat(StatType.OVERHEATING, True, True)
+    global dump_setting_var
+    config.set('ed_journal_dump_enabled', dump_setting_var.get())
     
-def dummy_clear_overheating():
-    global eliteduino_instance
-    eliteduino_instance.update_stat(StatType.OVERHEATING, False, True)
+    global dump_path_var
+    config.set('ed_journal_dump_path', dump_path_var.get())
+
+def set_dummy_status():
+    global selected_stat_type
+    stat_type = StatType[selected_stat_type.get()]
     
+    global eliteduino_instance
+    eliteduino_instance.update_stat(stat_type, True, True)
+
+def clear_dummy_status():
+    global selected_stat_type
+    stat_type = StatType[selected_stat_type.get()]
+    
+    global eliteduino_instance
+    eliteduino_instance.update_stat(stat_type, False, True)
+
+def choose_dump_file_path():
+    from tkinter.filedialog import asksaveasfilename
+    path = asksaveasfilename()
+    
+    global dump_path_var
+    dump_path_var.set(path)
+
 def debug_write_journal_entry_to_log(entry):
-    # some quick and dirty logging to collect a whole bunch of updates
-    import os
-    desktop = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop')
-    dumpfile_path = os.path.join(desktop,"edmc-journal_entry.txt")
+    global dump_setting_var
+    if dump_setting_var.get() != 0:
+        return
+        
+    global dump_path_var
+    dumpfile_path = dump_path_var.get()
     try:
         with open(dumpfile_path, "a+") as dumpfile:
             dumpfile.write(str(entry))
