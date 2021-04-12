@@ -107,12 +107,17 @@ def choose_dump_file_path():
     dump_path_var.set(path)
 
 def debug_write_journal_entry_to_log(entry):
-    global dump_setting_var
-    if dump_setting_var.get() != 0:
+    from config import config
+    
+    dump_setting_var = config.getint("ed_journal_dump_enabled")
+    dumpfile_path = config.get("ed_journal_dump_path")
+    
+    if dump_setting_var is None or dumpfile_path is None:
         return
         
-    global dump_path_var
-    dumpfile_path = dump_path_var.get()
+    if dump_setting_var == 0:
+        return
+    
     try:
         with open(dumpfile_path, "a+") as dumpfile:
             dumpfile.write(str(entry))
