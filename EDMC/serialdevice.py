@@ -25,21 +25,22 @@ def find(excluded_devices = []):
 class Device():
     def __init__(self):
         self.connection = None
+        self._id = None
         
     def shutdown(self):
         pass
         
     @property
+    def id(self):
+        return self._id
+        
+    @property
     def connected(self):
         return self.connection is not None
         
-    def connect(self):
+    def connect(self, excluded_devices = []):
         if(self.connected):
             return True
-            
-        list_all_ports()
-            
-        excluded_devices = []
         
         while True:
             potential_device = find(excluded_devices)
@@ -48,11 +49,10 @@ class Device():
                 break
                 
             try:
-                print(f"Attempting to connect to {potential_device}")
                 self.connection = serial.Serial(potential_device)
+                self._id = potential_device
                 break
             except serial.serialutil.SerialException as e:
-                print(f"Could not connect: {e}")
                 excluded_devices.append(potential_device)
                 self.connection = None
         
@@ -62,13 +62,17 @@ class Device():
         if self.connection is not None:
             self.connection.close()
             self.connection = None
+            self._id = None
             
     def write(self, buffer):
         if(self.connected):
-            data = buffer.bytes(with_reportid = False)
-            
-            print("Sending data via serial:")
-            [print(hex(b), end=" ") for b in data]
-            written = self.connection.write(data)
-            
-            return written
+            try:
+                data = buffer.bytes(with_reportid = False)
+                written = self.connection.write(data)
+                return written
+                
+            except serial.serialutil.SerialException:
+                # For the sake of our sanity, just assume that we have been disconnected
+                print(f"Lost connection to {self._id}")
+                self.disconnect()
+                return 0

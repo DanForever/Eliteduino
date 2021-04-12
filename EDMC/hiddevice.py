@@ -26,6 +26,7 @@ class Device():
         self._hid = pyhid.Hid()
         self._hid.init()
         
+        self._id = None
         self._device = None
         
     def shutdown(self):
@@ -41,27 +42,17 @@ class Device():
                     
         return None
     
-    def find_device_path(self):
-        with self.hid.enumerate() as enumeration:
-            for deviceInfo in enumeration:
-                print("Found hid device vid: " + hex(deviceInfo.vendor_id) + ", usage: " + hex(deviceInfo.usage_page))
-                if(deviceInfo.vendor_id == 0x16c0 and deviceInfo.usage_page==0xffab):
-                    self.device_path = deviceInfo.path
-                elif(deviceInfo.vendor_id == 0x1b4f and deviceInfo.usage_page==0xffc0):
-                    self.device_path = deviceInfo.path
-                elif(deviceInfo.vendor_id == 0x1b4f and deviceInfo.usage_page==0xffab):
-                    self.device_path = deviceInfo.path
-                    break
+    @property
+    def id(self):
+        return self._id
     
     @property
     def connected(self):
         return self._device is not None and self._device.connected
         
-    def connect(self):
+    def connect(self, excluded_devices = []):
         if self.connected:
             return True
-        
-        excluded_devices = []
         
         while True:
             potential_device = self.find(excluded_devices)
@@ -69,10 +60,12 @@ class Device():
             if potential_device is None:
                 return False
             
-            self._device = self._hid.device(potential_device.path)
+            device = self._hid.device(potential_device.path)
             
-            print(f"Attempting to connect to device '{self._device}' over hid...")
-            if self._device.try_connect():
+            print(f"Attempting to connect to device '{device}' over hid...")
+            if device.try_connect():
+                self._device = device
+                self._id = potential_device
                 return True
             else:
                 print("Connection failed")

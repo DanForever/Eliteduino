@@ -1,5 +1,6 @@
 from pyhid import buffer
 from defines import *
+import connection
 
 class StatBuffer(buffer.Buffer):
     def __init__(self):
@@ -74,52 +75,9 @@ class StatBuffer(buffer.Buffer):
     stat_type = property(fset=_set_stat_type)
     data = property(fset=_set_data)
 
-class Connection():
-    def __init__(self):
-        self.device = None
-        
-    def shutdown(self):
-        if self.device is not None:
-            self.device.shutdown()
-        
-    @property
-    def connected(self):
-        return self.device is not None and self.device.connected
-    
-    def connect(self):
-        if self.connected:
-            return True
-        
-        # First try and connect using hid
-        print("Attempting to connect to device using HID...")
-        import hiddevice
-        hid_device = hiddevice.Device()
-        if hid_device.connect():
-            self.device = hid_device
-            return True
-        hid_device.shutdown()
-        
-        print("Attempting to connect to device using Serial...")
-        import serialdevice
-        serial_device = serialdevice.Device()
-        if serial_device.connect():
-            self.device = serial_device
-            return True
-        serial_device.shutdown()
-        
-        print("Failed to connect using any protocol!")
-        return False
-        
-    def disconnect(self):
-        if self.connected:
-            self.device.disconnect()
-        
-    def write(self, buffer):
-        self.device.write(buffer)
-        
 class Eliteduino():
     def __init__(self):
-        self.connection = Connection()
+        self.connection = connection.Connector()
         
         self.data = {}
         self.buffer = StatBuffer()
@@ -154,12 +112,8 @@ class Eliteduino():
         
         if(self.connection.connect()):
             num_bytes_written = self.connection.write(self.buffer)
-            print(f"Buffer written to USB, {num_bytes_written} bytes written")
-        else:
-            print("No device connected!")
-        
-        [print(hex(b), end=" ") for b in self.buffer._instance]
-        print("")
+            
+        self.connection.print_connections()
         print("<<< Update Stat >>>")
         
     def update_vicinity_internal(self, description, stationType = StationType.UNKNOWN_STATION_TYPE):
